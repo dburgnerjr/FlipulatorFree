@@ -1,15 +1,58 @@
 package com.danielburgnerjr.flipulatorfree;
 
+import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
-public class MainActivity {
+public class MainActivity extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        
+		final Button btnAbout = (Button) findViewById(R.id.btnAbout);
+		btnAbout.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+			    Intent intI = new Intent(MainActivity.this, AboutFlipulatorFree.class);
+			    startActivity(intI);
+			}
+		});
+
+		final Button btnCalculate = (Button) findViewById(R.id.btnCalculate);
+		btnCalculate.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+			    //Intent intI = new Intent(MainActivity.this, WhatIsFlipulator.class);
+			    //startActivity(intI);
+			}
+		});
+
+		final Button btnUpgrade = (Button) findViewById(R.id.btnUpgrade);
+		btnUpgrade.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+			    //Intent intI = new Intent(MainActivity.this, WhatIsFlipulator.class);
+			    //startActivity(intI);
+			}
+		});
+
+		final Button btnDonate = (Button) findViewById(R.id.btnDonate);
+		btnDonate.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+			    //Intent intI = new Intent(MainActivity.this, WhatIsFlipulator.class);
+			    //startActivity(intI);
+			}
+		});
+
 	}
 
 	@Override

@@ -2,7 +2,16 @@
 <resources>
 
     <string name="app_name">FlipulatorFree</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="flipulator_free">Flipulator free version</string>
+    <string name="aboutflipfree">About</string>
+    <string name="calculate">Calculate</string>
+    <string name="donate">Donate</string>
+    <string name="upgrade">Upgrade</string>
     <string name="action_settings">Settings</string>
-
+	<string name="banner_ad_unit_id">ca-app-pub-8379108590476103/7745389673</string>
+	
+	<string name="what_is_it">What Is A Flipulator?</string>    
+    <string name="flipulator">A Flipulator is a real estate investment calculator designed to determine the viability of rehabbing a house to determine profitability.
+                              Profitability is determined by using the flat fee and rehab type rehab models.</string>
+	
 </resources>
