@@ -13,5 +13,32 @@
 	<string name="what_is_it">What Is A Flipulator?</string>    
     <string name="flipulator">A Flipulator is a real estate investment calculator designed to determine the viability of rehabbing a house to determine profitability.
                               Profitability is determined by using the flat fee and rehab type rehab models.</string>
-	
+
+    <string name="address">Address:</string>
+    <string name="citystzip">City/State/ZIP Code:</string>
+    <string name="sq_footage">Square Footage:</string>
+    <string name="bedrooms">Bedrooms:</string>
+    <string name="bathrooms">Bathrooms:</string>
+    <string name="salePrice">Sale Price:</string>
+    <string name="FMVARV">FMV/ARV:</string>
+
+    <string name="rehab_number">Budget Flat Rate</string>
+    <string name="rehab_budget">Rehab Budget:</string>
+    <string name="rehab_type">Rehab Type</string>
+    <string name="rehab_class">Enter Rehab Type:</string>
+    
+
+    <string-array name="rehab_type">
+		<item>Low</item>
+		<item>Medium</item>
+		<item>High</item>
+		<item>Super-High</item>
+		<item>Bulldozer</item>
+	</string-array>
+    
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="next">Next</string>
+    <string name="help">Help</string>
+    
 </resources>

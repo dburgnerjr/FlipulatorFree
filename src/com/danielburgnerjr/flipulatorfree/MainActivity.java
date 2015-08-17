@@ -32,8 +32,8 @@ public class MainActivity extends ActionBarActivity {
 		final Button btnCalculate = (Button) findViewById(R.id.btnCalculate);
 		btnCalculate.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
-			    //Intent intI = new Intent(MainActivity.this, WhatIsFlipulator.class);
-			    //startActivity(intI);
+			    Intent intI = new Intent(MainActivity.this, CalculateActivity.class);
+			    startActivity(intI);
 			}
 		});
 

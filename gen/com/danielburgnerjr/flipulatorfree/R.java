@@ -16,6 +16,9 @@ public final class R {
         public static final int abc_slide_out_bottom=0x7f040004;
         public static final int abc_slide_out_top=0x7f040005;
     }
+    public static final class array {
+        public static final int rehab_type=0x7f0c0000;
+    }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -1192,15 +1195,16 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050027;
-        public static final int action_settings=0x7f050048;
+        public static final int action_settings=0x7f050058;
         public static final int activity_chooser_view_content=0x7f050028;
-        public static final int adView=0x7f050047;
+        public static final int adView=0x7f050042;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
         public static final int btnAbout=0x7f050043;
         public static final int btnCalculate=0x7f050044;
-        public static final int btnDonate=0x7f050046;
-        public static final int btnUpgrade=0x7f050045;
+        public static final int btnDonate=0x7f050045;
+        public static final int btnSubmit=0x7f050057;
+        public static final int btnUpgrade=0x7f050046;
         public static final int checkbox=0x7f050030;
         public static final int collapseActionView=0x7f05000d;
         public static final int default_activity_button=0x7f05002b;
@@ -1226,6 +1230,9 @@ containing a value of this type.
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
         public static final int radio=0x7f050032;
+        public static final int rdoRehab=0x7f05004f;
+        public static final int rdoRehabNumber=0x7f050050;
+        public static final int rdoRehabType=0x7f050051;
         public static final int satellite=0x7f05001a;
         public static final int search_badge=0x7f050035;
         public static final int search_bar=0x7f050034;
@@ -1242,14 +1249,26 @@ containing a value of this type.
         public static final int showHome=0x7f050004;
         public static final int showTitle=0x7f050006;
         public static final int split_action_bar=0x7f050021;
+        public static final int spnRehabType=0x7f050055;
         public static final int submit_area=0x7f05003c;
         public static final int tabMode=0x7f050002;
         public static final int terrain=0x7f05001b;
-        public static final int textAppName=0x7f050042;
+        public static final int textAppName=0x7f050047;
         public static final int textFlipulator=0x7f050041;
         public static final int textWhatIsFlipulator=0x7f050040;
         public static final int title=0x7f05002e;
         public static final int top_action_bar=0x7f050023;
+        public static final int tvRehabBudget=0x7f050052;
+        public static final int tvRehabType=0x7f050054;
+        public static final int txtAddress=0x7f050048;
+        public static final int txtBathrooms=0x7f05004c;
+        public static final int txtBedrooms=0x7f05004b;
+        public static final int txtCityStZip=0x7f050049;
+        public static final int txtFMVARV=0x7f05004e;
+        public static final int txtHelp=0x7f050056;
+        public static final int txtRehabBudget=0x7f050053;
+        public static final int txtSalePrice=0x7f05004d;
+        public static final int txtSq_Footage=0x7f05004a;
         public static final int up=0x7f050024;
         public static final int useLogo=0x7f050003;
         public static final int withText=0x7f05000c;
@@ -1306,12 +1325,15 @@ containing a value of this type.
         public static final int abc_search_view=0x7f030016;
         public static final int activity_aboutflipulatorfree=0x7f030017;
         public static final int activity_main=0x7f030018;
-        public static final int support_simple_spinner_dropdown_item=0x7f030019;
+        public static final int calculate=0x7f030019;
+        public static final int rehab_type=0x7f03001a;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
     }
     public static final class menu {
-        public static final int main=0x7f0c0000;
+        public static final int main=0x7f0d0000;
     }
     public static final class string {
+        public static final int FMVARV=0x7f0a0037;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f0a0001;
@@ -1354,6 +1376,7 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
         public static final int aboutflipfree=0x7f0a0029;
         public static final int action_settings=0x7f0a002d;
+        public static final int address=0x7f0a0031;
         public static final int app_name=0x7f0a0027;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
@@ -1379,7 +1402,11 @@ containing a value of this type.
          */
         public static final int auth_client_using_bad_version_title=0x7f0a0021;
         public static final int banner_ad_unit_id=0x7f0a002e;
+        public static final int bathrooms=0x7f0a0035;
+        public static final int bedrooms=0x7f0a0034;
         public static final int calculate=0x7f0a002a;
+        public static final int cancel=0x7f0a003d;
+        public static final int citystzip=0x7f0a0032;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -1454,6 +1481,15 @@ containing a value of this type.
         public static final int donate=0x7f0a002b;
         public static final int flipulator=0x7f0a0030;
         public static final int flipulator_free=0x7f0a0028;
+        public static final int help=0x7f0a003f;
+        public static final int next=0x7f0a003e;
+        public static final int rehab_budget=0x7f0a0039;
+        public static final int rehab_class=0x7f0a003b;
+        public static final int rehab_number=0x7f0a0038;
+        public static final int rehab_type=0x7f0a003a;
+        public static final int salePrice=0x7f0a0036;
+        public static final int sq_footage=0x7f0a0033;
+        public static final int submit=0x7f0a003c;
         public static final int upgrade=0x7f0a002c;
         public static final int what_is_it=0x7f0a002f;
     }
