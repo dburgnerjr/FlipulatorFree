@@ -27,6 +27,10 @@
     <string name="rehab_type">Rehab Type</string>
     <string name="rehab_class">Enter Rehab Type:</string>
     
+    <string name="closholdcosts">Closing/Holding:</string>
+    <string name="profit">Profit:</string>
+    <string name="roi">ROI:</string>
+    <string name="cashoncash">Cash on Cash Return:</string>
 
     <string-array name="rehab_type">
 		<item>Low</item>
@@ -37,7 +41,7 @@
 	</string-array>
     
     <string name="submit">Submit</string>
-    <string name="cancel">Cancel</string>
+    <string name="email">Email Results</string>
     <string name="next">Next</string>
     <string name="help">Help</string>
     

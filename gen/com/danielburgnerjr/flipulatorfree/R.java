@@ -1176,11 +1176,10 @@ containing a value of this type.
         public static final int common_signin_btn_text_pressed_dark=0x7f02006d;
         public static final int common_signin_btn_text_pressed_light=0x7f02006e;
         public static final int ic_flipulator=0x7f02006f;
-        public static final int ic_launcher=0x7f020070;
-        public static final int ic_plusone_medium_off_client=0x7f020071;
-        public static final int ic_plusone_small_off_client=0x7f020072;
-        public static final int ic_plusone_standard_off_client=0x7f020073;
-        public static final int ic_plusone_tall_off_client=0x7f020074;
+        public static final int ic_plusone_medium_off_client=0x7f020070;
+        public static final int ic_plusone_small_off_client=0x7f020071;
+        public static final int ic_plusone_standard_off_client=0x7f020072;
+        public static final int ic_plusone_tall_off_client=0x7f020073;
     }
     public static final class id {
         public static final int AboutFlipulatorFree=0x7f05003f;
@@ -1195,7 +1194,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050027;
-        public static final int action_settings=0x7f050058;
+        public static final int action_settings=0x7f050063;
         public static final int activity_chooser_view_content=0x7f050028;
         public static final int adView=0x7f050042;
         public static final int always=0x7f05000b;
@@ -1203,6 +1202,7 @@ containing a value of this type.
         public static final int btnAbout=0x7f050043;
         public static final int btnCalculate=0x7f050044;
         public static final int btnDonate=0x7f050045;
+        public static final int btnEmail=0x7f050062;
         public static final int btnSubmit=0x7f050057;
         public static final int btnUpgrade=0x7f050046;
         public static final int checkbox=0x7f050030;
@@ -1263,12 +1263,22 @@ containing a value of this type.
         public static final int txtAddress=0x7f050048;
         public static final int txtBathrooms=0x7f05004c;
         public static final int txtBedrooms=0x7f05004b;
+        public static final int txtCashOnCash=0x7f050061;
         public static final int txtCityStZip=0x7f050049;
+        public static final int txtCityStZipCode=0x7f050059;
+        public static final int txtClosHoldCosts=0x7f05005e;
         public static final int txtFMVARV=0x7f05004e;
+        public static final int txtFMVARVResult=0x7f05005b;
         public static final int txtHelp=0x7f050056;
+        public static final int txtProfit=0x7f05005f;
+        public static final int txtROI=0x7f050060;
         public static final int txtRehabBudget=0x7f050053;
+        public static final int txtRehabBudgetResult=0x7f05005d;
         public static final int txtSalePrice=0x7f05004d;
+        public static final int txtSalePriceResult=0x7f05005c;
         public static final int txtSq_Footage=0x7f05004a;
+        public static final int txtSq_Ft=0x7f05005a;
+        public static final int txtStreetAddress=0x7f050058;
         public static final int up=0x7f050024;
         public static final int useLogo=0x7f050003;
         public static final int withText=0x7f05000c;
@@ -1327,7 +1337,8 @@ containing a value of this type.
         public static final int activity_main=0x7f030018;
         public static final int calculate=0x7f030019;
         public static final int rehab_type=0x7f03001a;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
+        public static final int results=0x7f03001b;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
     }
     public static final class menu {
         public static final int main=0x7f0d0000;
@@ -1405,8 +1416,9 @@ containing a value of this type.
         public static final int bathrooms=0x7f0a0035;
         public static final int bedrooms=0x7f0a0034;
         public static final int calculate=0x7f0a002a;
-        public static final int cancel=0x7f0a003d;
+        public static final int cashoncash=0x7f0a003f;
         public static final int citystzip=0x7f0a0032;
+        public static final int closholdcosts=0x7f0a003c;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -1479,17 +1491,20 @@ containing a value of this type.
          */
         public static final int common_signin_button_text_long=0x7f0a0020;
         public static final int donate=0x7f0a002b;
+        public static final int email=0x7f0a0041;
         public static final int flipulator=0x7f0a0030;
         public static final int flipulator_free=0x7f0a0028;
-        public static final int help=0x7f0a003f;
-        public static final int next=0x7f0a003e;
+        public static final int help=0x7f0a0043;
+        public static final int next=0x7f0a0042;
+        public static final int profit=0x7f0a003d;
         public static final int rehab_budget=0x7f0a0039;
         public static final int rehab_class=0x7f0a003b;
         public static final int rehab_number=0x7f0a0038;
         public static final int rehab_type=0x7f0a003a;
+        public static final int roi=0x7f0a003e;
         public static final int salePrice=0x7f0a0036;
         public static final int sq_footage=0x7f0a0033;
-        public static final int submit=0x7f0a003c;
+        public static final int submit=0x7f0a0040;
         public static final int upgrade=0x7f0a002c;
         public static final int what_is_it=0x7f0a002f;
     }

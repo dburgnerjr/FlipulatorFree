@@ -1,9 +1,9 @@
 package com.danielburgnerjr.flipulatorfree;
 
-import android.app.Activity;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 
-public class AboutFlipulatorFree extends Activity {
+public class AboutFlipulatorFree extends ActionBarActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

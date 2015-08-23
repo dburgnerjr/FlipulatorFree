@@ -1,6 +1,6 @@
 package com.danielburgnerjr.flipulatorfree;
 
-import android.app.Activity;
+import android.support.v7.app.ActionBarActivity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
-public class CalculateActivity extends Activity {
+public class CalculateActivity extends ActionBarActivity {
 	
 	final Context cntC = this;
 	
@@ -151,7 +151,7 @@ public class CalculateActivity extends Activity {
 		} else if (("").equals(etFMVARV.getText().toString())) {
 			Toast.makeText(getApplicationContext(), "Must Enter Fair Market Value or After Repair Value", Toast.LENGTH_SHORT).show();
 		} else {
-/*			Intent intI = new Intent(this, ResultsActivity.class);
+			Intent intI = new Intent(CalculateActivity.this, ResultsActivity.class);
 	    
 			Calculate calC = new Calculate();
 			calC.setAddress(etAddress.getText().toString());
@@ -159,6 +159,8 @@ public class CalculateActivity extends Activity {
 			calC.setSquareFootage(Integer.parseInt(etSquareFootage.getText().toString()));
 			calC.setBedrooms(Integer.parseInt(etBedrooms.getText().toString()));
 			calC.setBathrooms(Integer.parseInt(etBathrooms.getText().toString()));
+			calC.setFMVARV(Integer.parseInt(etFMVARV.getText().toString()));
+			calC.setSalesPrice(Integer.parseInt(etSalesPrice.getText().toString()));
 			int nSelected = rgRehab.getCheckedRadioButtonId();
 			rbRehab = (RadioButton)findViewById(nSelected);
 			
@@ -183,7 +185,7 @@ public class CalculateActivity extends Activity {
 	    
 			intI.putExtra("Calculate", calC);	    
 			startActivity(intI);
-*/		}
+		}
 	}
 	
 	@Override

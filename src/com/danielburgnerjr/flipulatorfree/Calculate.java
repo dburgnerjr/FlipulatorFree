@@ -7,9 +7,7 @@ public class Calculate implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String strAddress;		// address
-	private String strCity;			// city
-	private String strState;		// state
-	private String strZIPCode;		// ZIP Code
+	private String strCityStZip;	// city state ZIP code
 	private int nSquareFootage;		// square footage
 	private int nBedrooms;			// number of bedrooms
 	private int nBathrooms;			// number of bathrooms
@@ -25,30 +23,14 @@ public class Calculate implements Serializable {
 		this.strAddress = strAdd;
 	}
 
-	public String getCity() {
-		return strCity;
+	public String getCityStZip() {
+		return strCityStZip;
 	}
 
-	public void setCity(String strC) {
-		this.strCity = strC;
+	public void setCityStZip(String strCSZ) {
+		this.strCityStZip = strCSZ;
 	}
 
-	public String getState() {
-		return strState;
-	}
-
-	public void setState(String strS) {
-		this.strState = strS;
-	}
-
-	public String getZIPCode() {
-		return strZIPCode;
-	}
-
-	public void setZIPCode(String strZ) {
-		this.strZIPCode = strZ;
-	}
-	
 	public int getSquareFootage() {
 		return nSquareFootage;
 	}
@@ -120,7 +102,7 @@ public class Calculate implements Serializable {
 
 	@Override
     public String toString() {
-        return "Location\nAddress: " + strAddress + "\nCity: " + strCity + "\nState: " + strState + "\nZIP Code: " + strZIPCode +
+        return "Location\nAddress: " + strAddress + "\nCity, State ZIP: " + strCityStZip + 
         	   "\nSquare Footage: " + nSquareFootage + "\nBedrooms: " + nBedrooms + "\nBathrooms: " + nBathrooms;
     }  
 }
