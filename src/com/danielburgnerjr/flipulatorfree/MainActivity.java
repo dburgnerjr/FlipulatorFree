@@ -1,6 +1,6 @@
 package com.danielburgnerjr.flipulatorfree;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,7 +11,7 @@ import android.widget.Button;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,8 @@ public class MainActivity extends ActionBarActivity {
 		final Button btnUpgrade = (Button) findViewById(R.id.btnUpgrade);
 		btnUpgrade.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
-			    //Intent intI = new Intent(MainActivity.this, WhatIsFlipulator.class);
-			    //startActivity(intI);
+			    Intent intI = new Intent(MainActivity.this, UpgradeActivity.class);
+			    startActivity(intI);
 			}
 		});
 

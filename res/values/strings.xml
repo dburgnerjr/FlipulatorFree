@@ -31,7 +31,11 @@
     <string name="profit">Profit:</string>
     <string name="roi">ROI:</string>
     <string name="cashoncash">Cash on Cash Return:</string>
-
+    
+    <string name="upgrade_details">The Premium version of the Flipulator will allow you to enter more information related to the rehab process.
+                                   Details include: reserves (property tax, insurance, utilities), sales/mortgage info and closing expenses/market info.</string>
+    <string name="coming_soon"><u>Coming soon to the Google Play Store.</u></string>
+    
     <string-array name="rehab_type">
 		<item>Low</item>
 		<item>Medium</item>

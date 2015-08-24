@@ -1,6 +1,6 @@
 package com.danielburgnerjr.flipulatorfree;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
-public class CalculateActivity extends ActionBarActivity {
+public class CalculateActivity extends Activity {
 	
 	final Context cntC = this;
 	

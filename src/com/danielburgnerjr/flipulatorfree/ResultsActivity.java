@@ -1,6 +1,6 @@
 package com.danielburgnerjr.flipulatorfree;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ResultsActivity extends ActionBarActivity {
+public class ResultsActivity extends Activity {
 	
 	final Context cntC = this;
 	

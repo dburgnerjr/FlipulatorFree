@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.danielburgnerjr.flipulatorfree.UpgradeActivity" >
+
+    <LinearLayout
+        android:id="@+id/UpgradeActivity"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txtUpgrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:text="@string/upgrade" />
+
+        <TextView
+            android:id="@+id/txtUpgradeDetails"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36sp"
+            android:text="@string/upgrade_details" />
+        
+        <TextView
+            android:id="@+id/txtComingSoon"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36sp"
+            android:textStyle="bold|italic"
+            android:gravity="center"
+            android:text="@string/coming_soon" />
+</LinearLayout>
+
+</RelativeLayout>
