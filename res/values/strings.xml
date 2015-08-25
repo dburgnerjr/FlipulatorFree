@@ -35,7 +35,13 @@
     <string name="upgrade_details">The Premium version of the Flipulator will allow you to enter more information related to the rehab process.
                                    Details include: reserves (property tax, insurance, utilities), sales/mortgage info and closing expenses/market info.</string>
     <string name="coming_soon"><u>Coming soon to the Google Play Store.</u></string>
-    
+
+    <string name="mission">I am a real estate investor whose mission is to provide easy to use tools for other real estate investors to
+                           effectively evaluate properties and maximize profitability.  My goals include the expansion of this app that will
+                           be available on the App Store and to provide a better user experience.  Your donation will help reach my goals and
+                           provide a better user experience for you.  Please make a donation today.</string>
+    <string name="paypal_link"><u>Paypal Link Goes Here.</u></string>
+                           
     <string-array name="rehab_type">
 		<item>Low</item>
 		<item>Medium</item>

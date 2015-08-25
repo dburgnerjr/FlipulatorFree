@@ -48,8 +48,8 @@ public class MainActivity extends Activity {
 		final Button btnDonate = (Button) findViewById(R.id.btnDonate);
 		btnDonate.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
-			    //Intent intI = new Intent(MainActivity.this, WhatIsFlipulator.class);
-			    //startActivity(intI);
+			    Intent intI = new Intent(MainActivity.this, DonateActivity.class);
+			    startActivity(intI);
 			}
 		});
 

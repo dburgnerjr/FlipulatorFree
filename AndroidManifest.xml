@@ -49,6 +49,11 @@
 			android:label="Upgrade"
 			android:theme="@style/AppTheme" >
 		</activity>
+        <activity
+			android:name=".DonateActivity"
+			android:label="Donate"
+			android:theme="@style/AppTheme" >
+		</activity>
         <!--Include the AdActivity configChanges and theme. -->
         <activity android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
