@@ -8,13 +8,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends Activity {
+	
+	String strPackName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		strPackName = getApplicationContext().getPackageName();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
         AdView mAdView = (AdView) findViewById(R.id.adView);
@@ -50,6 +54,19 @@ public class MainActivity extends Activity {
 			public void onClick(View view) {
 			    Intent intI = new Intent(MainActivity.this, DonateActivity.class);
 			    startActivity(intI);
+			}
+		});
+
+		final Button btnShare = (Button) findViewById(R.id.btnShare);
+		btnShare.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+	   			Intent intI = new Intent(Intent.ACTION_SEND);  
+	   			intI.setType("text/plain");
+	   			intI.putExtra(Intent.EXTRA_SUBJECT, "Flipulator Free");
+	   			String sAux = "\nLet me recommend you this application\n\n";
+	   			sAux = sAux + "https://play.google.com/store/apps/details?id=" + strPackName + "\n\n";
+	   			intI.putExtra(Intent.EXTRA_TEXT, sAux);  
+	   			startActivity(Intent.createChooser(intI, "choose one"));
 			}
 		});
 
