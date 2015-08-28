@@ -20,6 +20,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 public class CalculateActivity extends Activity {
 	
 	final Context cntC = this;
@@ -44,6 +47,9 @@ public class CalculateActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.calculate);
+        AdView mAdCalcView = (AdView) findViewById(R.id.adCalcView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdCalcView.loadAd(adRequest);
 
 		etAddress   = (EditText)findViewById(R.id.txtAddress);
 		etCityStZip   = (EditText)findViewById(R.id.txtCityStZip);

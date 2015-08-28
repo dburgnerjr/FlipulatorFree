@@ -1,5 +1,8 @@
 package com.danielburgnerjr.flipulatorfree;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -36,6 +39,9 @@ public class ResultsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.results);
+        AdView mAdResView = (AdView) findViewById(R.id.adResView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdResView.loadAd(adRequest);
 
 		etStreetAddress = (EditText)findViewById(R.id.txtStreetAddress);
 		etCityStZipCode = (EditText)findViewById(R.id.txtCityStZipCode);
