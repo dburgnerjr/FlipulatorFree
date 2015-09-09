@@ -41,8 +41,18 @@
                            effectively evaluate properties and maximize profitability.  My goals include the expansion of this app that will
                            be available on the App Store and to provide a better user experience.  Your donation will help reach my goals and
                            provide a better user experience for you.  Please make a donation today.</string>
-    <string name="paypal_link"><u>Paypal Link Goes Here.</u></string>
-                           
+
+    <string name="donations__google_android_market">Google Play Store</string>
+    <string name="donations__google_android_market_not_supported_title">In-App Donations are not supported.</string>
+    <string name="donations__google_android_market_not_supported">In-App Donations are not supported. Is Google Play Store installed correctly?</string>
+    <string name="donations__google_android_market_description">Google takes 30 % off every donation!</string>
+    <string name="donations__google_android_market_donate_button">Donate!</string>
+    <string name="donations__google_android_market_text">How much?</string>
+    <string name="donations__thanks_dialog_title">Thanks!</string>
+    <string name="donations__thanks_dialog">Thanks for donating!\nI really appreciate this!</string>
+    <string name="donations__alert_dialog_title">Error occurred</string>
+    <string name="donations__button_close">Close</string>
+    
     <string-array name="rehab_type">
 		<item>Low</item>
 		<item>Medium</item>
@@ -50,6 +60,15 @@
 		<item>Super-High</item>
 		<item>Bulldozer</item>
 	</string-array>
+
+    <string-array name="donation_google_catalog_values">
+        <item>1 USD</item>
+        <item>5 USD</item>
+        <item>10 USD</item>
+        <item>25 USD</item>
+        <item>50 USD</item>
+        <item>100 USD</item>
+    </string-array>
     
     <string name="submit">Submit</string>
     <string name="email">Email Results</string>

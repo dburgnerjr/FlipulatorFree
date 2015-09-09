@@ -29,14 +29,12 @@
             android:layout_marginTop="36sp"
             android:text="@string/mission" />
         
-        <TextView
-            android:id="@+id/txtPaypalLink"
+        <ViewStub
+            android:id="@+id/vwsGoogle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36sp"
-            android:textStyle="bold|italic"
-            android:gravity="center"
-            android:text="@string/paypal_link" />
-</LinearLayout>
+            android:inflatedId="@+id/donateGoogle"
+            android:layout="@layout/donatefraggoogle" />
+	</LinearLayout>
 
 </RelativeLayout>
