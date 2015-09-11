@@ -88,7 +88,10 @@ public class DonateFragment extends Fragment {
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.donatefraggoogle, container, false);
+        // choose donation amount
+    	View viewV = (ViewGroup) inflater.inflate(R.layout.donatefraggoogle, container, false);
+        mGoogleEditText = (EditText) viewV.findViewById(R.id.edtDonate);
+        return viewV;
     }
 
     @Override
@@ -100,9 +103,6 @@ public class DonateFragment extends Fragment {
             // inflate google view into stub
             ViewStub googleViewStub = (ViewStub) getActivity().findViewById(R.id.vwsGoogle);
             googleViewStub.inflate();
-
-            // choose donation amount
-            mGoogleEditText = (EditText) getActivity().findViewById(R.id.txtDonate);
             
             Button btGoogle = (Button) getActivity().findViewById(R.id.donations__google_android_market_donate_button);
             btGoogle.setOnClickListener(new OnClickListener() {

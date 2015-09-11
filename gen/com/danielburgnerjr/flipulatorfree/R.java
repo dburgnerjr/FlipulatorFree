@@ -1219,9 +1219,9 @@ containing a value of this type.
         public static final int disableHome=0x7f050008;
         public static final int donateGoogle=0x7f050046;
         public static final int donations__google_android_market_donate_button=0x7f050065;
-        public static final int donations__google_android_market_spinner=0x7f050064;
         public static final int dropdown=0x7f05000f;
         public static final int edit_query=0x7f050033;
+        public static final int edtDonate=0x7f050064;
         public static final int end=0x7f050013;
         public static final int expand_activities_button=0x7f050029;
         public static final int expanded_menu=0x7f05002f;
