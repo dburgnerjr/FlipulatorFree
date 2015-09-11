@@ -1,49 +1,189 @@
 package com.danielburgnerjr.flipulatorfree;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 
-import com.danielburgnerjr.flipulatorfree.DonateFragment;
+import com.danielburgnerjr.flipulatorfree.util.IabHelper;
+import com.danielburgnerjr.flipulatorfree.util.IabResult;
+import com.danielburgnerjr.flipulatorfree.util.Purchase;
 
-public class DonateActivity extends FragmentActivity {
+public class DonateActivity extends Activity {
+
+    private EditText mGoogleEditText;
+    private Button btnDonate;				// donate
+    
+    // Google Play helper object
+    private IabHelper mHelper;
+
+    protected boolean mDebug = false;
+
+    protected boolean mGoogleEnabled = false;
+    protected String mGooglePubkey = "";
+    protected String[] mGoogleCatalog = new String[]{};
+    protected String[] mGoogleCatalogValues = new String[]{};
+    
+    private static final String TAG = "Donations Library";
 
     /**
      * Google
      */
     private static final String GOOGLE_PUBKEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhUoMs4c4RcEIRckCir+wNCDZk8Zy3I4w7UjrPvKWIh8tl71HrEE+6BQiBCxseGfpuVEZntaHhzyQj5gMLSI5JBRboOlpItj7SyvupoHszsSh28VdJQiD3AWXB1LNeS9Z6W9RffSKYfEKs8v+dMwqzi+C2M+fPg9o7IcAXsCnJrVqS+vIhYrfyVX4oG3DQ28wfcWVPgGnNLP82y5VaP+xlJYdBZBQJrDBlQq1QaecSiR+wRG8ZBMv5V1x6w/QM4yKhoolz2Pc6Zt8YVkCVpQhf8usGcAy0d6ysW5YlkhFz2PbVoi553OkH3T5lZ5LO3cFXYG0g1ttsfE/8WiPYRlGxwIDAQAB";
-    private static final String[] GOOGLE_CATALOG = new String[]{"ntpsync.donation.1",
-            "ntpsync.donation.5", "ntpsync.donation.10", "ntpsync.donation.25", "ntpsync.donation.50",
-            "ntpsync.donation.100"};
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_donate);
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        DonateFragment donateFragment;
-        donateFragment = DonateFragment.newInstance(false, true, GOOGLE_PUBKEY, GOOGLE_CATALOG,
-                    getResources().getStringArray(R.array.donation_google_catalog_values));
+		mGooglePubkey = GOOGLE_PUBKEY;
+		mGoogleEditText = (EditText) findViewById(R.id.edtDonate);
+		btnDonate = (Button) findViewById(R.id.btnDonate);
+		
+        btnDonate.setOnClickListener(new OnClickListener() {
 
-        ft.replace(R.id.DonateActivity, donateFragment, "donateFragment");
-        ft.commit();
+            @Override
+            public void onClick(View v) {
+                donateGoogleOnClick(v);
+            }
+        });
+
+        // Create the helper, passing it our context and the public key to verify signatures with
+        if (mDebug)
+            Log.d(TAG, "Creating IAB helper.");
+        mHelper = new IabHelper(this, mGooglePubkey);
+
+        // enable debug logging (for a production application, you should set this to false).
+        mHelper.enableDebugLogging(mDebug);
+
+        // Start setup. This is asynchronous and the specified listener
+        // will be called once setup completes.
+        if (mDebug)
+            Log.d(TAG, "Starting setup.");
+        mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+            public void onIabSetupFinished(IabResult result) {
+                if (mDebug)
+                    Log.d(TAG, "Setup finished.");
+
+                if (!result.isSuccess()) {
+                    // Oh noes, there was a problem.
+                    openDialog(android.R.drawable.ic_dialog_alert, R.string.donations__google_android_market_not_supported_title,
+                            getString(R.string.donations__google_android_market_not_supported));
+                    return;
+                }
+
+                // Have we been disposed of in the meantime? If so, quit.
+                if (mHelper == null) return;
+            }
+        });
+
 	}
+
+    /**
+     * Open dialog
+     */
+    void openDialog(int icon, int title, String message) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setIcon(icon);
+        dialog.setTitle(title);
+        dialog.setMessage(message);
+        dialog.setCancelable(true);
+        dialog.setNeutralButton(R.string.donations__button_close,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }
+        );
+        dialog.show();
+    }
+
+    /**
+     * Donate button executes donations based on selection in spinner
+     */
+    public void donateGoogleOnClick(View view) {
+        String strDonation;
+        strDonation = mGoogleEditText.getText().toString();
+        if (mDebug)
+            Log.d(TAG, "selected item in spinner: " + strDonation);
+
+        if (mDebug) {
+            // when debugging, choose android.test.x item
+            mHelper.launchPurchaseFlow(this,
+            		strDonation, IabHelper.ITEM_TYPE_INAPP,
+                    0, mPurchaseFinishedListener, null);
+        } else {
+            mHelper.launchPurchaseFlow(this,
+            		strDonation, IabHelper.ITEM_TYPE_INAPP,
+                    0, mPurchaseFinishedListener, null);
+        }
+    }
+
+    // Callback for when a purchase is finished
+    IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
+        public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
+            if (mDebug)
+                Log.d(TAG, "Purchase finished: " + result + ", purchase: " + purchase);
+
+            // if we were disposed of in the meantime, quit.
+            if (mHelper == null) return;
+
+            if (result.isSuccess()) {
+                if (mDebug)
+                    Log.d(TAG, "Purchase successful.");
+
+                // directly consume in-app purchase, so that people can donate multiple times
+                mHelper.consumeAsync(purchase, mConsumeFinishedListener);
+
+                // show thanks openDialog
+                openDialog(android.R.drawable.ic_dialog_info, R.string.donations__thanks_dialog_title,
+                        getString(R.string.donations__thanks_dialog));
+            }
+        }
+    };
+
+    // Called when consumption is complete
+    IabHelper.OnConsumeFinishedListener mConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
+        public void onConsumeFinished(Purchase purchase, IabResult result) {
+            if (mDebug)
+                Log.d(TAG, "Consumption finished. Purchase: " + purchase + ", result: " + result);
+
+            // if we were disposed of in the meantime, quit.
+            if (mHelper == null) return;
+
+            if (result.isSuccess()) {
+                if (mDebug)
+                    Log.d(TAG, "Consumption successful. Provisioning.");
+            }
+            if (mDebug)
+                Log.d(TAG, "End consumption flow.");
+        }
+    };
 
     /**
      * Needed for Google Play In-app Billing. It uses startIntentSenderForResult(). The result is not propagated to
      * the Fragment like in startActivityForResult(). Thus we need to propagate manually to our Fragment.
      */
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (mDebug)
+            Log.d(TAG, "onActivityResult(" + requestCode + "," + resultCode + "," + data);
+        if (mHelper == null) return;
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment fragment = fragmentManager.findFragmentByTag("donateFragment");
-        if (fragment != null) {
-            fragment.onActivityResult(requestCode, resultCode, data);
+        // Pass on the fragment result to the helper for handling
+        if (!mHelper.handleActivityResult(requestCode, resultCode, data)) {
+            // not handled, so handle it ourselves (here's where you'd
+            // perform any handling of activity results not related to in-app
+            // billing...
+            super.onActivityResult(requestCode, resultCode, data);
+        } else {
+            if (mDebug)
+                Log.d(TAG, "onActivityResult handled by IABUtil.");
         }
     }
-
 }

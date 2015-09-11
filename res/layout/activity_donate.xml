@@ -29,12 +29,43 @@
             android:layout_marginTop="36sp"
             android:text="@string/mission" />
         
-        <ViewStub
-            android:id="@+id/vwsGoogle"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:inflatedId="@+id/donateGoogle"
-            android:layout="@layout/donatefraggoogle" />
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:paddingTop="5dp"
+	        android:text="@string/donations__google_android_market"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:paddingBottom="5dp"
+	        android:paddingTop="5dp"
+	        android:text="@string/donations__google_android_market_description"
+	        android:textAppearance="@android:style/TextAppearance.Small" />
+        
+   	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:orientation="horizontal"
+	        android:paddingTop="5dp" >
+	
+	        <EditText
+	            android:id="@+id/edtDonate"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:textSize="12sp"
+	            android:ems="10"
+	            android:inputType="text" />
+	        
+	        <Button
+	            android:id="@+id/btnDonate"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:text="@string/donations__google_android_market_donate_button" />
+	    </LinearLayout>
 	</LinearLayout>
 
 </RelativeLayout>
