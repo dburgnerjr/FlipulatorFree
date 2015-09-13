@@ -46,8 +46,8 @@
     <string name="donations__google_android_market_not_supported_title">In-App Donations are not supported.</string>
     <string name="donations__google_android_market_not_supported">In-App Donations are not supported. Is Google Play Store installed correctly?</string>
     <string name="donations__google_android_market_description">Google takes 30 % off every donation!</string>
-    <string name="donations__google_android_market_donate_button">Donate!</string>
-    <string name="donations__google_android_market_text">How much?</string>
+    <string name="txtDonateNow">Donate!</string>
+    <string name="txtHowMuch">How much?</string>
     <string name="donations__thanks_dialog_title">Thanks!</string>
     <string name="donations__thanks_dialog">Thanks for donating!\nI really appreciate this!</string>
     <string name="donations__alert_dialog_title">Error occurred</string>
@@ -62,12 +62,12 @@
 	</string-array>
 
     <string-array name="donation_google_catalog_values">
-        <item>1 USD</item>
-        <item>5 USD</item>
-        <item>10 USD</item>
-        <item>25 USD</item>
-        <item>50 USD</item>
-        <item>100 USD</item>
+        <item>$1.00</item>
+        <item>$5.00</item>
+        <item>$10.00</item>
+        <item>$25.00</item>
+        <item>$50.00</item>
+        <item>$100.00</item>
     </string-array>
     
     <string name="submit">Submit</string>

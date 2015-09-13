@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.danielburgnerjr.flipulatorfree.util.IabHelper;
 import com.danielburgnerjr.flipulatorfree.util.IabResult;
@@ -17,8 +19,8 @@ import com.danielburgnerjr.flipulatorfree.util.Purchase;
 
 public class DonateActivity extends Activity {
 
-    private EditText mGoogleEditText;
-    private Button btnDonate;				// donate
+    private Spinner mGoogleSpinner;
+    private Button btnDonateNow;				// donate
     
     // Google Play helper object
     private IabHelper mHelper;
@@ -32,6 +34,10 @@ public class DonateActivity extends Activity {
     
     private static final String TAG = "Donations Library";
 
+    private static final String[] CATALOG_DEBUG = new String[]{"android.test.purchased",
+        "android.test.canceled", "android.test.refunded", "android.test.item_unavailable"};
+    private static final String[] GOOGLE_CATALOG = new String[]{"donation1",
+        "donation5", "donation10", "donation25", "donation50", "donation100"};
     /**
      * Google
      */
@@ -41,10 +47,21 @@ public class DonateActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_donate);
 		mGooglePubkey = GOOGLE_PUBKEY;
-		mGoogleEditText = (EditText) findViewById(R.id.edtDonate);
-		btnDonate = (Button) findViewById(R.id.btnDonate);
+		mGoogleCatalog = GOOGLE_CATALOG;
+		mGoogleCatalogValues = getResources().getStringArray(R.array.donation_google_catalog_values); 
+        // choose donation amount
+		mGoogleSpinner = (Spinner) findViewById(R.id.spnDonate);
+        ArrayAdapter<CharSequence> adapter;
+        if (mDebug) {
+            adapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, CATALOG_DEBUG);
+        } else {
+            adapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, mGoogleCatalogValues);
+        }
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mGoogleSpinner.setAdapter(adapter);
+		btnDonateNow = (Button) findViewById(R.id.btnDonateNow);
 		
-        btnDonate.setOnClickListener(new OnClickListener() {
+        btnDonateNow.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -107,19 +124,21 @@ public class DonateActivity extends Activity {
      * Donate button executes donations based on selection in spinner
      */
     public void donateGoogleOnClick(View view) {
-        String strDonation;
-        strDonation = mGoogleEditText.getText().toString();
+        final int index;
+        index = mGoogleSpinner.getSelectedItemPosition();
         if (mDebug)
-            Log.d(TAG, "selected item in spinner: " + strDonation);
+            Log.d(TAG, "selected item in spinner: " + index);
 
         if (mDebug) {
             // when debugging, choose android.test.x item
+        	//Toast.makeText(getApplicationContext(), CATALOG_DEBUG[index], Toast.LENGTH_LONG).show();
             mHelper.launchPurchaseFlow(this,
-            		"android.test.purchased", IabHelper.ITEM_TYPE_INAPP,
+            		CATALOG_DEBUG[index], IabHelper.ITEM_TYPE_INAPP,
                     0, mPurchaseFinishedListener, null);
         } else {
+        	//Toast.makeText(getApplicationContext(), mGoogleCatalog[index], Toast.LENGTH_LONG).show();
             mHelper.launchPurchaseFlow(this,
-            		"donation", IabHelper.ITEM_TYPE_INAPP,
+            		mGoogleCatalog[index], IabHelper.ITEM_TYPE_INAPP,
                     0, mPurchaseFinishedListener, null);
         }
     }
