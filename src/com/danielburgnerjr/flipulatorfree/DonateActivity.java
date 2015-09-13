@@ -115,11 +115,11 @@ public class DonateActivity extends Activity {
         if (mDebug) {
             // when debugging, choose android.test.x item
             mHelper.launchPurchaseFlow(this,
-            		strDonation, IabHelper.ITEM_TYPE_INAPP,
+            		"android.test.purchased", IabHelper.ITEM_TYPE_INAPP,
                     0, mPurchaseFinishedListener, null);
         } else {
             mHelper.launchPurchaseFlow(this,
-            		strDonation, IabHelper.ITEM_TYPE_INAPP,
+            		"donation", IabHelper.ITEM_TYPE_INAPP,
                     0, mPurchaseFinishedListener, null);
         }
     }

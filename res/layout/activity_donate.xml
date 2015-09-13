@@ -62,9 +62,11 @@
 	        <Button
 	            android:id="@+id/btnDonate"
 	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
+	            android:layout_height="40sp"
 	            android:layout_weight="1"
-	            android:text="@string/donations__google_android_market_donate_button" />
+	            android:text="@string/donations__google_android_market_donate_button"
+	            android:background="#690"
+                android:textColor="#ffffff" />
 	    </LinearLayout>
 	</LinearLayout>
 
