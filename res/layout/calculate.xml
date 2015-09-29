@@ -3,231 +3,246 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".CalculateActivity" >
-    
+
+    <ScrollView
+        android:id="@+id/scvCalculate"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" >
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical" >
+	        
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="35sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/address" />
+		
+		        <EditText
+		            android:id="@+id/txtAddress"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:ems="10"
+		            android:inputType="text" />
+		    </LinearLayout>
+		
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="35sp"
+		        android:orientation="horizontal" >
+
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/citystzip" />
+		
+		        <EditText
+		            android:id="@+id/txtCityStZip"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:ems="10"
+		            android:inputType="text" />
+		        		
+	       </LinearLayout>
+		
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="35sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/sq_footage" />
+		
+		        <EditText
+		            android:id="@+id/txtSq_Footage"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:ems="10"
+		            android:inputType="numberDecimal" />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="35sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/bedrooms" />
+		
+		        <EditText
+		            android:id="@+id/txtBedrooms"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:ems="10"
+		            android:inputType="numberDecimal" />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="35sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/bathrooms" />
+		
+		        <EditText
+		            android:id="@+id/txtBathrooms"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:ems="10"
+		            android:inputType="numberDecimal" />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="35sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/salePrice" />
+		
+		        <EditText
+		            android:id="@+id/txtSalePrice"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:ems="10"
+		            android:inputType="numberDecimal" />
+		    </LinearLayout>
+		
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="35sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/FMVARV" />
+		
+		        <EditText
+		            android:id="@+id/txtFMVARV"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:ems="10"
+		            android:imeOptions="actionDone"
+		            android:inputType="numberDecimal" />
+		    </LinearLayout>
+		
+		    <RadioGroup
+		        android:id="@+id/rdoRehab"
+		        android:layout_width="match_parent"
+		        android:layout_height="30sp"
+		        android:layout_gravity="center_horizontal"
+		        android:orientation="horizontal" >
+		
+		        <RadioButton
+		            android:id="@+id/rdoRehabNumber"
+		            android:layout_width="match_parent"
+		            android:layout_height="30sp"
+		            android:layout_weight="0.5"
+		            android:textSize="15sp"
+		            android:text="@string/rehab_number" />
+		
+		        <RadioButton
+		            android:id="@+id/rdoRehabType"
+		            android:layout_width="match_parent"
+		            android:layout_height="30sp"
+		            android:layout_weight="0.5"
+		            android:textSize="15sp"
+		            android:text="@string/rehab_type" />
+		    </RadioGroup>
+		    
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="35sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:id="@+id/tvRehabBudget"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/rehab_budget" />
+		
+		        <EditText
+		            android:id="@+id/txtRehabBudget"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:ems="10"
+		            android:imeOptions="actionDone"
+		            android:inputType="numberDecimal" />
+		    </LinearLayout>
+		
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:id="@+id/tvRehabType"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/rehab_class" />
+		
+		        <Spinner
+		            android:id="@+id/spnRehabType"
+		            android:layout_width="0sp"
+		            android:layout_height="40sp"
+		            android:layout_weight="0.5"
+		            android:ems="10" />
+		    </LinearLayout>
+		</LinearLayout>
+    </ScrollView>
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="35sp"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/address" />
-
-        <EditText
-            android:id="@+id/txtAddress"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:ems="10"
-            android:inputType="text" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/citystzip" />
-
-        <EditText
-            android:id="@+id/txtCityStZip"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:ems="10"
-            android:inputType="text" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/sq_footage" />
-
-        <EditText
-            android:id="@+id/txtSq_Footage"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:ems="10"
-            android:inputType="numberDecimal" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/bedrooms" />
-
-        <EditText
-            android:id="@+id/txtBedrooms"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:ems="10"
-            android:inputType="numberDecimal" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/bathrooms" />
-
-        <EditText
-            android:id="@+id/txtBathrooms"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:ems="10"
-            android:inputType="numberDecimal" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/salePrice" />
-
-        <EditText
-            android:id="@+id/txtSalePrice"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:ems="10"
-            android:inputType="numberDecimal" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/FMVARV" />
-
-        <EditText
-            android:id="@+id/txtFMVARV"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:ems="10"
-            android:inputType="numberDecimal" />
-    </LinearLayout>
-
-    <RadioGroup
-        android:id="@+id/rdoRehab"
-        android:layout_width="wrap_content"
-        android:layout_height="30sp"
-        android:orientation="horizontal" >
-
-        <RadioButton
-            android:id="@+id/rdoRehabNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="30sp"
-            android:layout_weight="0.5"
-            android:textSize="15sp"
-            android:text="@string/rehab_number" />
-
-        <RadioButton
-            android:id="@+id/rdoRehabType"
-            android:layout_width="wrap_content"
-            android:layout_height="30sp"
-            android:layout_weight="0.5"
-            android:textSize="15sp"
-            android:text="@string/rehab_type" />
-    </RadioGroup>
-    
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:id="@+id/tvRehabBudget"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/rehab_budget" />
-
-        <EditText
-            android:id="@+id/txtRehabBudget"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:ems="10"
-            android:inputType="numberDecimal" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:id="@+id/tvRehabType"
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/rehab_class" />
-
-        <Spinner
-            android:id="@+id/spnRehabType"
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:ems="10" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="30sp"
         android:orientation="horizontal" >
 
         <Button
             android:id="@+id/txtHelp"
             android:layout_width="100sp"
-            android:layout_height="30sp"
+            android:layout_height="35sp"
             android:layout_weight="0.5"
             android:text="@string/help"
             android:background="#690"
@@ -236,7 +251,7 @@
         <Button
             android:id="@+id/btnSubmit"
             android:layout_width="100sp"
-            android:layout_height="30sp"
+            android:layout_height="35sp"
             android:layout_weight="0.5"
             android:onClick="nextPage"
             android:text="@string/submit"
@@ -246,10 +261,10 @@
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adCalcView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         ads:adSize="BANNER"
         ads:adUnitId="@string/banner_ad_unit_id" >
     </com.google.android.gms.ads.AdView>
-
+    
 </LinearLayout>

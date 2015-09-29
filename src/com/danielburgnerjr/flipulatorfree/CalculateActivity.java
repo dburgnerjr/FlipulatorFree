@@ -119,8 +119,8 @@ public class CalculateActivity extends Activity {
 											  "including the number of bedrooms and bathrooms, sale price, ARV and rehab budget. " +
 											  "Rehab budget can be a flat rate or a rehab type. " +
 											  "Rehab types are classified as:  Low ($15/sf, yard work and painting), " +
-											  "Medium ($20/sf > 1500 sf or $25/sf < 1500 sf, Low + kitchen and bathrooms," +
-											  "High ($30/sf, Medium + new roof), Super-High ($40/sf, complete gut job)," +
+											  "Medium ($20/sf > 1500 sf or $25/sf < 1500 sf, Low + kitchen and bathrooms, " +
+											  "High ($30/sf, Medium + new roof), Super-High ($40/sf, complete gut job), " +
 											  "Bulldozer ($125/sf, demolition and rebuild).")
 								  .setCancelable(false)
 								  .setNeutralButton("OK", new DialogInterface.OnClickListener() {

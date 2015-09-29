@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +21,8 @@ import com.danielburgnerjr.flipulatorfree.util.Purchase;
 public class DonateActivity extends Activity {
 
     private Spinner mGoogleSpinner;
-    private Button btnDonateNow;				// donate
+    private Button btnDonateNow;				// donate google
+    private Button btnPayPal;				    // donate paypal
     
     // Google Play helper object
     private IabHelper mHelper;
@@ -31,7 +33,12 @@ public class DonateActivity extends Activity {
     protected String mGooglePubkey = "";
     protected String[] mGoogleCatalog = new String[]{};
     protected String[] mGoogleCatalogValues = new String[]{};
-    
+
+    protected boolean mPaypalEnabled = false;
+    protected String mPaypalUser = "";
+    protected String mPaypalCurrencyCode = "";
+    protected String mPaypalItemName = "";
+
     private static final String TAG = "Donations Library";
 
     private static final String[] CATALOG_DEBUG = new String[]{"android.test.purchased",
@@ -95,6 +102,15 @@ public class DonateActivity extends Activity {
 
                 // Have we been disposed of in the meantime? If so, quit.
                 if (mHelper == null) return;
+            }
+        });
+
+        btnPayPal = (Button) findViewById(R.id.btnDonatePaypal);
+        btnPayPal.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                donatePayPalOnClick(v);
             }
         });
 
@@ -183,6 +199,16 @@ public class DonateActivity extends Activity {
                 Log.d(TAG, "End consumption flow.");
         }
     };
+
+    /**
+     * Donate Paypal button executes link to Paypal donation page
+     */
+    public void donatePayPalOnClick(View view) {
+	    String strPaypal = "http://www.paypal.me/dburgnerjr";
+   		Intent newActivity = new Intent(Intent.ACTION_VIEW,  Uri.parse(strPaypal));     
+        startActivity(newActivity);
+
+    }
 
     /**
      * Needed for Google Play In-app Billing. It uses startIntentSenderForResult(). The result is not propagated to

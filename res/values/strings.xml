@@ -46,7 +46,10 @@
     <string name="donations__google_android_market_not_supported_title">In-App Donations are not supported.</string>
     <string name="donations__google_android_market_not_supported">In-App Donations are not supported. Is Google Play Store installed correctly?</string>
     <string name="donations__google_android_market_description">Google takes 30 % off every donation!</string>
+    <string name="donations__paypal">PayPal</string>
+    <string name="donations__paypal_description">You can choose how much you want to donate after clicking the button!</string>
     <string name="txtDonateNow">Donate!</string>
+    <string name="txtDonatePaypal">Donate with Paypal</string>
     <string name="txtHowMuch">How much?</string>
     <string name="donations__thanks_dialog_title">Thanks!</string>
     <string name="donations__thanks_dialog">Thanks for donating!\nI really appreciate this!</string>
