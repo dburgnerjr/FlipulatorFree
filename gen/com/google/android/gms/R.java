@@ -27,18 +27,18 @@ public final class R {
 		public static final int zOrderOnTop = 0x7f01007a;
 	}
 	public static final class color {
-		public static final int common_action_bar_splitter = 0x7f07000c;
-		public static final int common_signin_btn_dark_text_default = 0x7f070003;
-		public static final int common_signin_btn_dark_text_disabled = 0x7f070005;
-		public static final int common_signin_btn_dark_text_focused = 0x7f070006;
-		public static final int common_signin_btn_dark_text_pressed = 0x7f070004;
-		public static final int common_signin_btn_default_background = 0x7f07000b;
-		public static final int common_signin_btn_light_text_default = 0x7f070007;
-		public static final int common_signin_btn_light_text_disabled = 0x7f070009;
-		public static final int common_signin_btn_light_text_focused = 0x7f07000a;
-		public static final int common_signin_btn_light_text_pressed = 0x7f070008;
-		public static final int common_signin_btn_text_dark = 0x7f07000e;
-		public static final int common_signin_btn_text_light = 0x7f07000f;
+		public static final int common_action_bar_splitter = 0x7f06000c;
+		public static final int common_signin_btn_dark_text_default = 0x7f060003;
+		public static final int common_signin_btn_dark_text_disabled = 0x7f060005;
+		public static final int common_signin_btn_dark_text_focused = 0x7f060006;
+		public static final int common_signin_btn_dark_text_pressed = 0x7f060004;
+		public static final int common_signin_btn_default_background = 0x7f06000b;
+		public static final int common_signin_btn_light_text_default = 0x7f060007;
+		public static final int common_signin_btn_light_text_disabled = 0x7f060009;
+		public static final int common_signin_btn_light_text_focused = 0x7f06000a;
+		public static final int common_signin_btn_light_text_pressed = 0x7f060008;
+		public static final int common_signin_btn_text_dark = 0x7f06000e;
+		public static final int common_signin_btn_text_light = 0x7f06000f;
 	}
 	public static final class drawable {
 		public static final int common_signin_btn_icon_dark = 0x7f020057;
@@ -71,14 +71,14 @@ public final class R {
 		public static final int ic_plusone_tall_off_client = 0x7f020074;
 	}
 	public static final class id {
-		public static final int hybrid = 0x7f05001c;
-		public static final int none = 0x7f050010;
-		public static final int normal = 0x7f050000;
-		public static final int satellite = 0x7f05001a;
-		public static final int terrain = 0x7f05001b;
+		public static final int hybrid = 0x7f09001a;
+		public static final int none = 0x7f090019;
+		public static final int normal = 0x7f090007;
+		public static final int satellite = 0x7f09001b;
+		public static final int terrain = 0x7f09001c;
 	}
 	public static final class integer {
-		public static final int google_play_services_version = 0x7f090001;
+		public static final int google_play_services_version = 0x7f080001;
 	}
 	public static final class string {
 		public static final int auth_client_needs_enabling_title = 0x7f0a0022;
