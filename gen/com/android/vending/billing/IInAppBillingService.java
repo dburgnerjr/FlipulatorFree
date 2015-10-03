@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: C:\\Users\\Daniel\\workspace\\FlipulatorFree\\src\\com\\android\\vending\\billing\\IInAppBillingService.aidl
+ * Original file: C:\\Users\\Daniel\\git\\FlipulatorFree\\src\\com\\android\\vending\\billing\\IInAppBillingService.aidl
  */
 package com.android.vending.billing;
 /**
