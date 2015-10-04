@@ -17,7 +17,7 @@
     	<item name="android:background">#690</item>    
     </style>
 
-    <style name="FlipFreeOpenScreenTheme" parent="android:Theme.Light">
+    <style name="FlipPremiumOpenScreenTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to

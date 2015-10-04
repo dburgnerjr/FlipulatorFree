@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">FlipulatorFree</string>
-    <string name="flipulator_free">Flipulator free version</string>
+    <string name="flipulator_free">Flipulator Free Version</string>
     <string name="aboutflipfree">About</string>
     <string name="calculate">Calculate</string>
     <string name="donate">Donate</string>

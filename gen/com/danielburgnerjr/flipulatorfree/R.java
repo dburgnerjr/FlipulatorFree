@@ -1579,6 +1579,7 @@ containing a value of this type.
          */
         public static final int AppTheme=0x7f0b0086;
         public static final int FlipFreeOpenScreenTheme=0x7f0b0085;
+        public static final int FlipPremiumOpenScreenTheme=0x7f0b0087;
         /**  Mimic text appearance in select_dialog_item.xml 
          */
         public static final int TextAppearance_AppCompat_Base_CompactMenu_Dialog=0x7f0b0063;
