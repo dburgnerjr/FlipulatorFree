@@ -1,8 +1,11 @@
 package com.danielburgnerjr.flipulatorfree;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -90,4 +93,30 @@ public class MainActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	 public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			exitByBackKey();
+		    return true;
+		}
+		return super.onKeyDown(keyCode, event);
+     }
+
+	 protected void exitByBackKey() {
+		AlertDialog adAlertBox = new AlertDialog.Builder(this)
+		    .setMessage("Do you want to exit application?")
+		    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		        // do something when the button is clicked
+		        public void onClick(DialogInterface arg0, int arg1) {
+		            finish();
+		            //close();
+		        }
+		    })
+		    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+		        // do something when the button is clicked
+		        public void onClick(DialogInterface arg0, int arg1) {
+		        }
+		    })
+		    .show();
+	 }
 }
