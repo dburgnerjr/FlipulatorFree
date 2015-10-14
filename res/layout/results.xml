@@ -251,16 +251,44 @@
     </LinearLayout>
     
     <LinearLayout
-        android:id="@+id/llResEmail"
+        android:id="@+id/llEditInfo"
         android:layout_width="fill_parent"
         android:layout_height="35sp"
-        android:layout_above="@+id/adResView"
+        android:layout_above="@+id/llResEmail"
         android:orientation="horizontal" >
 
         <View
             android:layout_width="100sp"
             android:layout_height="35sp"
             android:layout_weight="0.5" />
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="100sp"
+            android:layout_height="35sp"
+            android:layout_weight="0.5"
+            android:onClick="editInfo"
+            android:text="@string/edit"
+            android:background="#690"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/llResEmail"
+        android:layout_width="fill_parent"
+        android:layout_height="35sp"
+        android:layout_above="@+id/adResView"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnMainMenu"
+            android:layout_width="100sp"
+            android:layout_height="35sp"
+            android:layout_weight="0.5"
+            android:onClick="mainMenu"
+            android:text="@string/main_menu"
+            android:background="#690"
+            android:textColor="#ffffff" />
 
         <Button
             android:id="@+id/btnEmail"

@@ -99,6 +99,21 @@ public class ResultsActivity extends Activity {
 
 	}
 
+	// returns to main menu
+	public void mainMenu(View view) {
+	    Intent intI = new Intent(ResultsActivity.this, MainActivity.class);
+	    startActivity(intI);
+	    finish();
+	};
+
+	// returns to Calculate to edit any information
+	public void editInfo (View view) {
+		Intent intI = new Intent(ResultsActivity.this, CalculateActivity.class);
+		intI.putExtra("Calculate", calC);
+		startActivity(intI);
+		finish();
+	}
+	
 	public void nextPage(View view) {
 		// email results of calculate to those parties concerned
 		String strMessage = "Address:                " + calC.getAddress() + "\n";

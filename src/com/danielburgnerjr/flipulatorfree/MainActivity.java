@@ -41,6 +41,7 @@ public class MainActivity extends Activity {
 			public void onClick(View view) {
 			    Intent intI = new Intent(MainActivity.this, CalculateActivity.class);
 			    startActivity(intI);
+			    finish();
 			}
 		});
 
@@ -94,12 +95,12 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	 public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
+	 public boolean onKeyDown(int nKeyCode, KeyEvent keEvent) {
+		if (nKeyCode == KeyEvent.KEYCODE_BACK) {
 			exitByBackKey();
 		    return true;
 		}
-		return super.onKeyDown(keyCode, event);
+		return super.onKeyDown(nKeyCode, keEvent);
      }
 
 	 protected void exitByBackKey() {

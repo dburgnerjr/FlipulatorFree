@@ -74,6 +74,8 @@
     </string-array>
     
     <string name="submit">Submit</string>
+    <string name="edit">Edit</string>
+    <string name="main_menu">Main Menu</string>
     <string name="email">Email Results</string>
     <string name="next">Next</string>
     <string name="help">Help</string>

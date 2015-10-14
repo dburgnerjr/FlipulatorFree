@@ -14,6 +14,7 @@ public class Calculate implements Serializable {
 	private double dSalesPrice;		// sales price
 	private double dFMVARV;			// FMV/ARV
 	private double dBudget;         // budget
+	private int nRehabFlag;			// 0 = rehab flat rate, 1 = rehab class
 
 	public String getAddress() {
 		return strAddress;
@@ -79,6 +80,13 @@ public class Calculate implements Serializable {
 		this.dBudget = dB;		
 	}
 
+	public int getRehabFlag() {
+		return nRehabFlag;		// returns rehab flag
+	}
+
+	public void setRehabFlag(int nR) {
+		this.nRehabFlag = nR;		
+	}
 
 	public void calcBudgetRehabType(String strT) {
 		String strType = strT; // stores rehab type

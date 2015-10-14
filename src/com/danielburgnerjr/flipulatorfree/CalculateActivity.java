@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -26,6 +27,8 @@ import com.google.android.gms.ads.AdView;
 public class CalculateActivity extends Activity {
 	
 	final Context cntC = this;
+	private Calculate calR;				// Calculate object from ResultsActivity
+	private Intent intR;				// Intent object from ResultsActivity
 	
 	private EditText etAddress;			// address
 	private EditText etCityStZip;	    // city state zip code
@@ -35,7 +38,9 @@ public class CalculateActivity extends Activity {
 	private EditText etSalesPrice;		// sales price
 	private EditText etFMVARV;			// fair mkt value/after repair value
 	private RadioGroup rgRehab;			// radio group rehab
-	private RadioButton rbRehab;		// rehab radio buttons
+	private RadioButton rbRehab;		// rehab button id
+	private RadioButton rbRehab1;		// rehab number
+	private RadioButton rbRehab2;		// rehab type
 	private TextView tvRehabFlatRate;	// rehab budget flat rate textview
 	private EditText etRehabBudget;		// rehab budget
 	private TextView tvRehabType;		// rehab type textview
@@ -66,6 +71,8 @@ public class CalculateActivity extends Activity {
 		ArrayAdapter<String> aradRehabType = new ArrayAdapter<String>(this, R.layout.rehab_type,R.array.rehab_type);
 		
 		rgRehab   = (RadioGroup)findViewById(R.id.rdoRehab);
+		rbRehab1  = (RadioButton)findViewById(R.id.rdoRehabNumber);
+		rbRehab2  = (RadioButton)findViewById(R.id.rdoRehabType);
 		tvRehabFlatRate   = (TextView)findViewById(R.id.tvRehabBudget);
 		etRehabBudget   = (EditText)findViewById(R.id.txtRehabBudget);
 		tvRehabType   = (TextView)findViewById(R.id.tvRehabType);
@@ -83,12 +90,12 @@ public class CalculateActivity extends Activity {
 	        @Override
 	        public void onCheckedChanged(RadioGroup rgG, int nChecked) {
 
-	          if (nChecked==R.id.rdoRehabNumber) {
+	          if (nChecked == R.id.rdoRehabNumber) {
 	        	  tvRehabFlatRate.setVisibility(View.VISIBLE);
 	        	  etRehabBudget.setVisibility(View.VISIBLE);
 	        	  tvRehabType.setVisibility(View.INVISIBLE);
 	        	  spnRehabType.setVisibility(View.INVISIBLE);
-	          } else if (nChecked==R.id.rdoRehabType) {
+	          } else if (nChecked == R.id.rdoRehabType) {
 	        	  tvRehabFlatRate.setVisibility(View.INVISIBLE);
 	        	  etRehabBudget.setVisibility(View.INVISIBLE);
 	        	  tvRehabType.setVisibility(View.VISIBLE);
@@ -138,10 +145,68 @@ public class CalculateActivity extends Activity {
 				alertDialog.show();
 			}
 		});
-
+		
+		// gets Intent and Calculate object
+		intR = getIntent();
+		calR = (Calculate) intR.getSerializableExtra("Calculate");
+		// if Calculate object is null, fields are blank
+		if (calR == null) {
+			etAddress.setText("");
+			etCityStZip.setText("");
+			etSquareFootage.setText("");
+			etBedrooms.setText("");
+			etBathrooms.setText("");
+			etSalesPrice.setText("");
+			etFMVARV.setText("");
+		} else {
+			// set fields to member variables of Calculate object
+			etAddress.setText(calR.getAddress());
+			etCityStZip.setText(calR.getCityStZip());
+			etSquareFootage.setText(calR.getSquareFootage() + "");
+			etBedrooms.setText(calR.getBedrooms() + "");
+			etBathrooms.setText(calR.getBathrooms() + "");
+			etSalesPrice.setText((int)calR.getSalesPrice() + "");
+			etFMVARV.setText((int)calR.getFMVARV() + "");
+			if (calR.getRehabFlag() == 0) {
+				  rbRehab1.setChecked(true);
+				  rbRehab2.setChecked(false);
+	        	  tvRehabFlatRate.setVisibility(View.VISIBLE);
+	        	  etRehabBudget.setVisibility(View.VISIBLE);
+	        	  tvRehabType.setVisibility(View.INVISIBLE);
+	        	  spnRehabType.setVisibility(View.INVISIBLE);
+	        	  etRehabBudget.setText((int)calR.getBudget() + "");
+			} else {
+				  rbRehab1.setChecked(false);
+				  rbRehab2.setChecked(true);
+	        	  tvRehabFlatRate.setVisibility(View.INVISIBLE);
+	        	  etRehabBudget.setVisibility(View.INVISIBLE);
+	        	  tvRehabType.setVisibility(View.VISIBLE);
+	        	  spnRehabType.setVisibility(View.VISIBLE);
+	        	  int nCostSF = (int)(calR.getBudget()/calR.getSquareFootage());
+	        	  switch (nCostSF) {
+	        	  		case 15:
+	        	  					spnRehabType.setSelection(0);
+	        	  					break;
+	        	  		case 20:
+	        	  		case 25:
+		    	  					spnRehabType.setSelection(1);
+		    	  					break;
+	        	  		case 30:
+		    	  					spnRehabType.setSelection(2);
+		    	  					break;
+	        	  		case 40:
+		    	  					spnRehabType.setSelection(3);
+		    	  					break;
+	        	  		case 125:
+		    	  					spnRehabType.setSelection(4);
+		    	  					break;
+	        	  }
+			}
+		}
 	}
 
 	public void nextPage(View view) {
+		// checks if all fields are filled in, prompts user to fill in fields if any are missing
 		if (("").equals(etAddress.getText().toString())) {
 			Toast.makeText(getApplicationContext(), "Must Enter Address", Toast.LENGTH_SHORT).show();
 		} else if (("").equals(etCityStZip.getText().toString())) {
@@ -159,6 +224,7 @@ public class CalculateActivity extends Activity {
 		} else {
 			Intent intI = new Intent(CalculateActivity.this, ResultsActivity.class);
 	    
+			// creates new Calculate object and sets info from fields into object variables
 			Calculate calC = new Calculate();
 			calC.setAddress(etAddress.getText().toString());
 			calC.setCityStZip(etCityStZip.getText().toString());
@@ -180,36 +246,49 @@ public class CalculateActivity extends Activity {
 												dB = Double.parseDouble(etRehabBudget.getText().toString());
 												calC.setBudget(dB);
 											}
+											calC.setRehabFlag(0);
 											break;
 											
 				case R.id.rdoRehabType:
 											String strRTSel = spnRehabType.getSelectedItem().toString();
 											calC.calcBudgetRehabType(strRTSel);
+											calC.setRehabFlag(1);
 											break;
 											
-		}
-	    
+			}
+			
+			// stores Calculate object in Intent
 			intI.putExtra("Calculate", calC);	    
 			startActivity(intI);
+			finish();
 		}
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+	 public boolean onKeyDown(int nKeyCode, KeyEvent keEvent) {
+		if (nKeyCode == KeyEvent.KEYCODE_BACK) {
+			exitByBackKey();
+		    return true;
 		}
-		return super.onOptionsItemSelected(item);
-	}
+		return super.onKeyDown(nKeyCode, keEvent);
+    }
+
+	 protected void exitByBackKey() {
+		AlertDialog adAlertBox = new AlertDialog.Builder(this)
+		    .setMessage("Do you want to go back to main menu?")
+		    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		        // do something when the button is clicked
+		        public void onClick(DialogInterface arg0, int arg1) {
+		        	Intent intB = new Intent(CalculateActivity.this, MainActivity.class);
+		        	startActivity(intB);
+		        	finish();
+		            //close();
+		        }
+		    })
+		    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+		        // do something when the button is clicked
+		        public void onClick(DialogInterface arg0, int arg1) {
+		        }
+		    })
+		    .show();
+	 }
 }
