@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.danielburgnerjr.flipulatorfree.util.IabHelper;
@@ -23,6 +24,8 @@ public class DonateActivity extends Activity {
     private Spinner mGoogleSpinner;
     private Button btnDonateNow;				// donate google
     private Button btnPayPal;				    // donate paypal
+    private TextView txtPayPalTitle;			// Paypal title
+    private TextView txtPayPalDesc;				// Paypal description
     
     // Google Play helper object
     private IabHelper mHelper;
@@ -53,9 +56,14 @@ public class DonateActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_donate);
+		
 		mGooglePubkey = GOOGLE_PUBKEY;
 		mGoogleCatalog = GOOGLE_CATALOG;
-		mGoogleCatalogValues = getResources().getStringArray(R.array.donation_google_catalog_values); 
+		mGoogleCatalogValues = getResources().getStringArray(R.array.donation_google_catalog_values);
+		
+		txtPayPalTitle = (TextView)findViewById(R.id.txtPaypalTitle);
+		txtPayPalDesc = (TextView)findViewById(R.id.txtPaypalDescription);
+
         // choose donation amount
 		mGoogleSpinner = (Spinner) findViewById(R.id.spnDonate);
         ArrayAdapter<CharSequence> adapter;
@@ -106,6 +114,12 @@ public class DonateActivity extends Activity {
         });
 
         btnPayPal = (Button) findViewById(R.id.btnDonatePaypal);
+
+        // set PayPal invisible for Google Play
+        txtPayPalTitle.setVisibility(View.INVISIBLE);
+        txtPayPalDesc.setVisibility(View.INVISIBLE);
+        btnPayPal.setVisibility(View.INVISIBLE);
+        
         btnPayPal.setOnClickListener(new OnClickListener() {
 
             @Override
