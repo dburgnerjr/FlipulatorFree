@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+        RateThisApp.onLaunch(this);
         
 		final Button btnAbout = (Button) findViewById(R.id.btnAbout);
 		btnAbout.setOnClickListener(new OnClickListener() {
