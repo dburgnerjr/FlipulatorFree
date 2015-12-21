@@ -10,7 +10,7 @@ public class Calculate implements Serializable {
 	private String strCityStZip;	// city state ZIP code
 	private int nSquareFootage;		// square footage
 	private int nBedrooms;			// number of bedrooms
-	private int nBathrooms;			// number of bathrooms
+	private double dBathrooms;		// number of bathrooms
 	private double dSalesPrice;		// sales price
 	private double dFMVARV;			// FMV/ARV
 	private double dBudget;         // budget
@@ -48,12 +48,12 @@ public class Calculate implements Serializable {
 		this.nBedrooms = nBR;
 	}
 
-	public int getBathrooms() {
-		return nBathrooms;
+	public double getBathrooms() {
+		return dBathrooms;
 	}
 
-	public void setBathrooms(int nBA) {
-		this.nBathrooms = nBA;
+	public void setBathrooms(double dBA) {
+		this.dBathrooms = dBA;
 	}
 	
 	public double getSalesPrice() {
@@ -111,6 +111,6 @@ public class Calculate implements Serializable {
 	@Override
     public String toString() {
         return "Location\nAddress: " + strAddress + "\nCity, State ZIP: " + strCityStZip + 
-        	   "\nSquare Footage: " + nSquareFootage + "\nBedrooms: " + nBedrooms + "\nBathrooms: " + nBathrooms;
+        	   "\nSquare Footage: " + nSquareFootage + "\nBedrooms: " + nBedrooms + "\nBathrooms: " + dBathrooms;
     }  
 }

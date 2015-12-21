@@ -230,7 +230,7 @@ public class CalculateActivity extends Activity {
 			calC.setCityStZip(etCityStZip.getText().toString());
 			calC.setSquareFootage(Integer.parseInt(etSquareFootage.getText().toString()));
 			calC.setBedrooms(Integer.parseInt(etBedrooms.getText().toString()));
-			calC.setBathrooms(Integer.parseInt(etBathrooms.getText().toString()));
+			calC.setBathrooms(Double.parseDouble(etBathrooms.getText().toString()));
 			calC.setFMVARV(Integer.parseInt(etFMVARV.getText().toString()));
 			calC.setSalesPrice(Integer.parseInt(etSalesPrice.getText().toString()));
 			int nSelected = rgRehab.getCheckedRadioButtonId();
