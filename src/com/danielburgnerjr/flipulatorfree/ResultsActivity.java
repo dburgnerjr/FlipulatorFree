@@ -92,6 +92,25 @@ public class ResultsActivity extends Activity {
 		resR.setClosHoldCosts(calC.getFMVARV());
 		resR.setProfit(calC.getSalesPrice(), calC.getFMVARV(), calC.getBudget());
 		resR.setROI(calC.getFMVARV());
+		if (resR.getProfit() < 30000.0) {
+			AlertDialog adAlertBox = new AlertDialog.Builder(this)
+		    .setMessage("Your profit is below $30K! Would you like to make changes now?")
+		    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		        // do something when the button is clicked
+		        public void onClick(DialogInterface arg0, int arg1) {
+		        	Intent intB = new Intent(ResultsActivity.this, CalculateActivity.class);
+		        	intB.putExtra("Calculate", calC);
+		        	startActivity(intB);
+		        	finish();
+		        }
+		    })
+		    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+		        // do something when the button is clicked
+		        public void onClick(DialogInterface arg0, int arg1) {
+		        }
+		    })
+		    .show();
+		}
 		resR.setCashOnCash(calC.getBudget());
 		
 		etClosHoldCosts.setText("$" + String.format("%.0f", resR.getClosHoldCosts()));
