@@ -15,6 +15,7 @@ public class Calculate implements Serializable {
 	private double dFMVARV;			// FMV/ARV
 	private double dBudget;         // budget
 	private int nRehabFlag;			// 0 = rehab flat rate, 1 = rehab class
+	private String strBudgetItems;	// list of items that need repair
 
 	public String getAddress() {
 		return strAddress;
@@ -108,9 +109,18 @@ public class Calculate implements Serializable {
 		}
 	}
 
+	public String getBudgetItems() {
+		return strBudgetItems;
+	}
+
+	public void setBudgetItems(String strBI) {
+		this.strBudgetItems = strBI;
+	}
+
 	@Override
     public String toString() {
         return "Location\nAddress: " + strAddress + "\nCity, State ZIP: " + strCityStZip + 
-        	   "\nSquare Footage: " + nSquareFootage + "\nBedrooms: " + nBedrooms + "\nBathrooms: " + dBathrooms;
+        	   "\nSquare Footage: " + nSquareFootage + "\nBedrooms: " + nBedrooms + "\nBathrooms: " + dBathrooms +
+        	   "\nBudget: " + dBudget + "\nBudget Items: " + strBudgetItems;
     }  
 }

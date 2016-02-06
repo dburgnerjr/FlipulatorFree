@@ -22,6 +22,7 @@
     <string name="bathrooms">Bathrooms:</string>
     <string name="salePrice">Sale Price:</string>
     <string name="FMVARV">FMV/ARV:</string>
+    <string name="budgetItems">Budget Items:</string>
 
     <string name="rehab_number">Budget Flat Rate</string>
     <string name="rehab_budget">Rehab Budget:</string>

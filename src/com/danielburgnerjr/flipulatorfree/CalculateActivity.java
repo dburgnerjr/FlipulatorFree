@@ -37,6 +37,7 @@ public class CalculateActivity extends Activity {
 	private EditText etBathrooms;		// number of bathrooms
 	private EditText etSalesPrice;		// sales price
 	private EditText etFMVARV;			// fair mkt value/after repair value
+	private EditText etBudgetItems;		// budget items
 	private RadioGroup rgRehab;			// radio group rehab
 	private RadioButton rbRehab;		// rehab button id
 	private RadioButton rbRehab1;		// rehab number
@@ -63,6 +64,7 @@ public class CalculateActivity extends Activity {
 		etBathrooms   = (EditText)findViewById(R.id.txtBathrooms);
 		etSalesPrice   = (EditText)findViewById(R.id.txtSalePrice);
 		etFMVARV   = (EditText)findViewById(R.id.txtFMVARV);
+		etBudgetItems   = (EditText)findViewById(R.id.txtBudgetItems);
 		btnHelp = (Button)findViewById(R.id.txtHelp);
 		
 		ArrayAdapter<CharSequence> aradAdapter = ArrayAdapter.createFromResource(
@@ -123,8 +125,8 @@ public class CalculateActivity extends Activity {
  
 				// set dialog message
 				alertDialogBuilder.setMessage("Enter the address and square footage of the property, " +
-											  "including the number of bedrooms and bathrooms, sale price, ARV and rehab budget. " +
-											  "Rehab budget can be a flat rate or a rehab type. " +
+											  "including the number of bedrooms and bathrooms, sale price, ARV, budget items " +
+								              "and rehab budget. Rehab budget can be a flat rate or a rehab type. " +
 											  "Rehab types are classified as:  Low ($15/sf, yard work and painting), " +
 											  "Medium ($20/sf > 1500 sf or $25/sf < 1500 sf, Low + kitchen and bathrooms, " +
 											  "High ($30/sf, Medium + new roof), Super-High ($40/sf, complete gut job), " +
@@ -158,6 +160,7 @@ public class CalculateActivity extends Activity {
 			etBathrooms.setText("");
 			etSalesPrice.setText("");
 			etFMVARV.setText("");
+			etBudgetItems.setText("");
 		} else {
 			// set fields to member variables of Calculate object
 			etAddress.setText(calR.getAddress());
@@ -167,6 +170,7 @@ public class CalculateActivity extends Activity {
 			etBathrooms.setText(calR.getBathrooms() + "");
 			etSalesPrice.setText((int)calR.getSalesPrice() + "");
 			etFMVARV.setText((int)calR.getFMVARV() + "");
+			etBudgetItems.setText(calR.getBudgetItems());
 			if (calR.getRehabFlag() == 0) {
 				  rbRehab1.setChecked(true);
 				  rbRehab2.setChecked(false);
@@ -221,6 +225,8 @@ public class CalculateActivity extends Activity {
 			Toast.makeText(getApplicationContext(), "Must Enter Sales Price", Toast.LENGTH_SHORT).show();
 		} else if (("").equals(etFMVARV.getText().toString())) {
 			Toast.makeText(getApplicationContext(), "Must Enter Fair Market Value or After Repair Value", Toast.LENGTH_SHORT).show();
+		} else if (("").equals(etBudgetItems.getText().toString())) {
+			Toast.makeText(getApplicationContext(), "Must Enter Budget Items", Toast.LENGTH_SHORT).show();
 		} else {
 			Intent intI = new Intent(CalculateActivity.this, ResultsActivity.class);
 	    
@@ -233,6 +239,7 @@ public class CalculateActivity extends Activity {
 			calC.setBathrooms(Double.parseDouble(etBathrooms.getText().toString()));
 			calC.setFMVARV(Integer.parseInt(etFMVARV.getText().toString()));
 			calC.setSalesPrice(Integer.parseInt(etSalesPrice.getText().toString()));
+			calC.setBudgetItems(etBudgetItems.getText().toString());
 			int nSelected = rgRehab.getCheckedRadioButtonId();
 			rbRehab = (RadioButton)findViewById(nSelected);
 			

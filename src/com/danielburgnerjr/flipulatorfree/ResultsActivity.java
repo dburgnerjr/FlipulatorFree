@@ -144,6 +144,7 @@ public class ResultsActivity extends Activity {
 		strMessage += "After Repair Value:    $" + String.format("%.0f", calC.getFMVARV()) + "\n";
 		strMessage += "Sales Price:           $" + String.format("%.0f", calC.getSalesPrice()) + "\n";
 		strMessage += "Estimated Budget:      $" + String.format("%.0f", calC.getBudget()) + "\n";
+		strMessage += "Budget Items:           " + calC.getBudgetItems() + "\n";
 		strMessage += "Closing/Holding Costs: $" + String.format("%.0f", resR.getClosHoldCosts()) + "\n";
 		strMessage += "Profit:                $" + String.format("%.0f", resR.getProfit()) + "\n";
 		strMessage += "ROI:                    " + String.format("%.1f", resR.getROI()) + "%\n";
