@@ -7,249 +7,310 @@
     android:orientation="vertical"
     tools:context=".ResultsActivity" >
     
-    <LinearLayout
-        android:id="@+id/llResAddress"
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
+    <ScrollView
+        android:id="@+id/scvResults"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent" >
+        
+        <RelativeLayout 
+            android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical" >
+	        
+		    <LinearLayout
+		        android:id="@+id/llResAddress"
+		        android:layout_width="fill_parent"
+		        android:layout_height="35sp"
+		        android:layout_marginTop="10dp"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/address" />
+		
+		        <EditText
+		            android:id="@+id/txtStreetAddress"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:textColor="#000"
+		            android:hint="@string/address"
+		            android:ems="10" />
+		    </LinearLayout>
+		
+		    <LinearLayout
+		        android:id="@+id/llResCityStZip"
+		        android:layout_width="fill_parent"
+		        android:layout_height="35sp"
+		        android:layout_below="@+id/llResAddress"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/citystzip" />
+		
+		        <EditText
+		            android:id="@+id/txtCityStZipCode"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:textColor="#000"
+		            android:hint="@string/citystzip"
+		            android:ems="10" />
+		    </LinearLayout>
+		
+		    <LinearLayout
+		        android:id="@+id/llResSqFootage"
+		        android:layout_width="fill_parent"
+		        android:layout_height="35sp"
+		        android:layout_below="@+id/llResCityStZip"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/sq_footage" />
+		
+		        <EditText
+		            android:id="@+id/txtSq_Ft"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:textColor="#000"
+		            android:hint="@string/sq_footage"
+		            android:ems="10" />
+		    </LinearLayout>
+		
+		    <LinearLayout
+		        android:id="@+id/llResFMVARV"
+		        android:layout_width="fill_parent"
+		        android:layout_height="35sp"
+		        android:layout_below="@+id/llResSqFootage"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/FMVARV" />
+		
+		        <EditText
+		            android:id="@+id/txtFMVARVResult"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:textColor="#000"
+		            android:hint="@string/FMVARV"
+		            android:ems="10" />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llResSalePrice"
+		        android:layout_width="fill_parent"
+		        android:layout_height="35sp"
+		        android:layout_below="@+id/llResFMVARV"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/salePrice" />
+		
+		        <EditText
+		            android:id="@+id/txtSalePriceResult"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:textColor="#000"
+		            android:hint="@string/salePrice"
+		            android:ems="10" />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llResRehabBudget"
+		        android:layout_width="fill_parent"
+		        android:layout_height="35sp"
+		        android:layout_below="@+id/llResSalePrice"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/rehab_budget" />
+		
+		        <EditText
+		            android:id="@+id/txtRehabBudgetResult"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:textColor="#000"
+		            android:hint="@string/rehab_budget"
+		            android:ems="10" />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llResClosHoldCost"
+		        android:layout_width="fill_parent"
+		        android:layout_height="35sp"
+		        android:layout_below="@+id/llResRehabBudget"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/closholdcosts" />
+		
+		        <EditText
+		            android:id="@+id/txtClosHoldCosts"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:textColor="#000"
+		            android:hint="@string/closholdcosts"
+		            android:ems="10" />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llResProfit"
+		        android:layout_width="fill_parent"
+		        android:layout_height="35sp"
+		        android:layout_below="@+id/llResClosHoldCost"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/profit" />
+		
+		        <EditText
+		            android:id="@+id/txtProfit"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:textColor="#000"
+		            android:textStyle="bold"
+		            android:hint="@string/profit"
+		            android:ems="10" />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llResROI"
+		        android:layout_width="fill_parent"
+		        android:layout_height="35sp"
+		        android:layout_below="@+id/llResProfit"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/roi" />
+		
+		        <EditText
+		            android:id="@+id/txtROI"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:textColor="#000"
+		            android:textStyle="bold"
+		            android:hint="@string/roi"
+		            android:ems="10" />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llResCashCash"
+		        android:layout_width="fill_parent"
+		        android:layout_height="35sp"
+		        android:layout_below="@+id/llResROI"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:text="@string/cashoncash" />
+		
+		        <EditText
+		            android:id="@+id/txtCashOnCash"
+		            android:layout_width="0sp"
+		            android:layout_height="35sp"
+		            android:layout_weight="0.5"
+		            android:textSize="12sp"
+		            android:textColor="#000"
+		            android:textStyle="bold"
+		            android:hint="@string/cashoncash"
+		            android:ems="10" />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llBudgetItems"
+		        android:layout_width="match_parent"
+		        android:layout_height="25sp"
+		        android:layout_below="@+id/llResCashCash"
+		        android:orientation="horizontal" >
+		
+		        <TextView
+		            android:layout_width="0sp"
+		            android:layout_height="25sp"
+		            android:layout_weight="1"
+		            android:text="@string/budgetItems" />		
+		    </LinearLayout>
 
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/address" />
-
-        <EditText
-            android:id="@+id/txtStreetAddress"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:textColor="#000"
-            android:hint="@string/address"
-            android:ems="10" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llResCityStZip"
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:layout_below="@+id/llResAddress"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/citystzip" />
-
-        <EditText
-            android:id="@+id/txtCityStZipCode"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:textColor="#000"
-            android:hint="@string/citystzip"
-            android:ems="10" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llResSqFootage"
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:layout_below="@+id/llResCityStZip"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/sq_footage" />
-
-        <EditText
-            android:id="@+id/txtSq_Ft"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:textColor="#000"
-            android:hint="@string/sq_footage"
-            android:ems="10" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llResFMVARV"
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:layout_below="@+id/llResSqFootage"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/FMVARV" />
-
-        <EditText
-            android:id="@+id/txtFMVARVResult"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:textColor="#000"
-            android:hint="@string/FMVARV"
-            android:ems="10" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:id="@+id/llResSalePrice"
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:layout_below="@+id/llResFMVARV"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/salePrice" />
-
-        <EditText
-            android:id="@+id/txtSalePriceResult"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:textColor="#000"
-            android:hint="@string/salePrice"
-            android:ems="10" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:id="@+id/llResRehabBudget"
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:layout_below="@+id/llResSalePrice"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/rehab_budget" />
-
-        <EditText
-            android:id="@+id/txtRehabBudgetResult"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:textColor="#000"
-            android:hint="@string/rehab_budget"
-            android:ems="10" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:id="@+id/llResClosHoldCost"
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:layout_below="@+id/llResRehabBudget"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/closholdcosts" />
-
-        <EditText
-            android:id="@+id/txtClosHoldCosts"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:textColor="#000"
-            android:hint="@string/closholdcosts"
-            android:ems="10" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:id="@+id/llResProfit"
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:layout_below="@+id/llResClosHoldCost"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/profit" />
-
-        <EditText
-            android:id="@+id/txtProfit"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:hint="@string/profit"
-            android:ems="10" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:id="@+id/llResROI"
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:layout_below="@+id/llResProfit"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/roi" />
-
-        <EditText
-            android:id="@+id/txtROI"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:hint="@string/roi"
-            android:ems="10" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:id="@+id/llResCashCash"
-        android:layout_width="fill_parent"
-        android:layout_height="35sp"
-        android:layout_below="@+id/llResROI"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:text="@string/cashoncash" />
-
-        <EditText
-            android:id="@+id/txtCashOnCash"
-            android:layout_width="0sp"
-            android:layout_height="35sp"
-            android:layout_weight="0.5"
-            android:textSize="12sp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:hint="@string/cashoncash"
-            android:ems="10" />
-    </LinearLayout>
-    
+		    <LinearLayout
+		        android:id="@+id/llBudgetItemsTxt"
+		        android:layout_width="match_parent"
+		        android:layout_height="70sp"
+		        android:layout_below="@+id/llBudgetItems"
+		        android:orientation="horizontal" >
+		
+		        <EditText
+		            android:id="@+id/txtBudgetItems"
+		            android:layout_width="fill_parent" 
+		           	android:layout_height="wrap_content" 
+		            android:scrollbars="vertical"
+		            android:inputType="textMultiLine"
+		            android:lines="4"
+		            android:minLines="2"
+		            android:maxLines="4"
+		            android:gravity="top|left"
+		            android:textSize="12sp"
+		            android:ems="10"
+		            android:textColor="#000"
+		            android:hint="@string/budgetItems" />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llBlankView"
+		        android:layout_width="match_parent"
+		        android:layout_height="100sp"
+		        android:layout_below="@+id/llBudgetItemsTxt"
+		        android:orientation="horizontal" >
+	
+			    <View
+		         	android:layout_width="0sp"
+		         	android:layout_height="100sp" />
+			</LinearLayout>
+		    
+		</RelativeLayout>
+    </ScrollView>
     <LinearLayout
         android:id="@+id/llEditInfo"
         android:layout_width="fill_parent"
@@ -260,7 +321,8 @@
         <View
             android:layout_width="100sp"
             android:layout_height="35sp"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.5"
+            android:background="#690" />
 
         <Button
             android:id="@+id/btnEdit"

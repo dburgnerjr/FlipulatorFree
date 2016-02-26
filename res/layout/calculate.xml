@@ -10,7 +10,7 @@
     <ScrollView
         android:id="@+id/scvCalculate"
 	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" >
+	    android:layout_height="match_parent" >
         
         <RelativeLayout 
             android:layout_width="match_parent"
@@ -64,7 +64,7 @@
 		        		
 	       </LinearLayout>
 		
-		    <LinearLayout
+		   <LinearLayout
 		        android:id="@+id/llSquareFootage"
 		        android:layout_width="match_parent"
 		        android:layout_height="35sp"
@@ -182,13 +182,13 @@
 		    <LinearLayout
 		        android:id="@+id/llBudgetItems"
 		        android:layout_width="match_parent"
-		        android:layout_height="35sp"
+		        android:layout_height="25sp"
 		        android:layout_below="@+id/llFMVARV"
 		        android:orientation="horizontal" >
 		
 		        <TextView
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="25sp"
 		            android:layout_weight="1"
 		            android:text="@string/budgetItems" />		
 		    </LinearLayout>
@@ -196,18 +196,22 @@
 		    <LinearLayout
 		        android:id="@+id/llBudgetItemsTxt"
 		        android:layout_width="match_parent"
-		        android:layout_height="105sp"
+		        android:layout_height="70sp"
 		        android:layout_below="@+id/llBudgetItems"
 		        android:orientation="horizontal" >
 		
 		        <EditText
 		            android:id="@+id/txtBudgetItems"
-		            android:layout_width="0sp"
-		            android:layout_height="105sp"
-		            android:layout_weight="0.5"
+		            android:layout_width="fill_parent" 
+		           	android:layout_height="wrap_content" 
+		            android:scrollbars="vertical"
+		            android:inputType="textMultiLine"
+		            android:lines="4"
+		            android:minLines="2"
+		            android:maxLines="4"
+		            android:gravity="top|left"
 		            android:textSize="12sp"
 		            android:ems="10"
-		            android:inputType="text"
 		            android:imeOptions="actionDone" />
 		    </LinearLayout>
 		    		    		
@@ -281,7 +285,18 @@
 		            android:layout_height="40sp"
 		            android:layout_weight="0.5"
 		            android:ems="10" />
-		    </LinearLayout>
+		    </LinearLayout>		    
+		    <LinearLayout
+		        android:id="@+id/llBlankView"
+		        android:layout_width="match_parent"
+		        android:layout_height="100sp"
+		        android:layout_below="@+id/llRehabType"
+		        android:orientation="horizontal" >
+	
+			    <View
+		         	android:layout_width="0sp"
+		         	android:layout_height="100sp" />
+			</LinearLayout>
 		</RelativeLayout>
     </ScrollView>
     <LinearLayout

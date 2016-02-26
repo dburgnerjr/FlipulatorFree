@@ -36,6 +36,7 @@ public class ResultsActivity extends Activity {
 	private EditText etProfit;			// profit
 	private EditText etROI;				// return on investment
 	private EditText etCashOnCash;		// cash on cash return
+	private EditText etBudgetItems;		// budget items
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class ResultsActivity extends Activity {
 		etProfit = (EditText)findViewById(R.id.txtProfit);
 		etROI = (EditText)findViewById(R.id.txtROI);		
 		etCashOnCash = (EditText)findViewById(R.id.txtCashOnCash);
+		etBudgetItems = (EditText)findViewById(R.id.txtBudgetItems);
 		
 		etStreetAddress.setKeyListener(null);
 		etStreetAddress.setEnabled(false);
@@ -76,6 +78,8 @@ public class ResultsActivity extends Activity {
 		etROI.setEnabled(false);
 		etCashOnCash.setKeyListener(null);
 		etCashOnCash.setEnabled(false);
+		etBudgetItems.setKeyListener(null);
+		etBudgetItems.setEnabled(false);
 		
 		Intent intI = getIntent();
 		
@@ -87,6 +91,7 @@ public class ResultsActivity extends Activity {
 		etFMVARV.setText("$" + String.format("%.0f", calC.getFMVARV()));
 		etSalesPrice.setText("$" + String.format("%.0f", calC.getSalesPrice()));
 		etRehabBudget.setText("$" + String.format("%.0f", calC.getBudget()));
+		etBudgetItems.setText(calC.getBudgetItems());
 		
 		resR = new Results();
 		resR.setClosHoldCosts(calC.getFMVARV());
