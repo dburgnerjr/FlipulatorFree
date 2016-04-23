@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RateThisApp {
 	private final static String APP_TITLE = "Flipulator Free";
@@ -66,6 +67,10 @@ public class RateThisApp {
 	    b1.setOnClickListener(new OnClickListener() {
 	        public void onClick(View v) {
 	            mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + APP_PNAME)));
+	            if (editor != null) {
+	                editor.putBoolean("dontshowagain", true);
+	                editor.commit();
+	            }
 	            dialog.dismiss();
 	        }
 	    });        
@@ -75,6 +80,11 @@ public class RateThisApp {
 	    b2.setText("Remind me later");
 	    b2.setOnClickListener(new OnClickListener() {
 	        public void onClick(View v) {
+	            if (editor != null) {
+	                editor.putLong("lLaunchCount", 0);
+	                editor.putLong("lDateFirstLaunch", 0);
+	                editor.commit();
+	            }
 	            dialog.dismiss();
 	        }
 	    });

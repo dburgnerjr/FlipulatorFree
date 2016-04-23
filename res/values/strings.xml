@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">FlipulatorFree</string>
+    <string name="app_name">Flipulator Free</string>
     <string name="flipulator_free">Flipulator Free Version</string>
     <string name="aboutflipfree">About</string>
     <string name="calculate">Calculate</string>
