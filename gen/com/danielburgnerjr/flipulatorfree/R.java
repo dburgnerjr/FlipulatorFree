@@ -1198,10 +1198,10 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f090002;
         public static final int action_menu_presenter=0x7f090003;
         public static final int action_mode_close_button=0x7f090027;
-        public static final int action_settings=0x7f090092;
+        public static final int action_settings=0x7f090093;
         public static final int activity_chooser_view_content=0x7f090028;
         public static final int adCalcView=0x7f090076;
-        public static final int adResView=0x7f09008f;
+        public static final int adResView=0x7f090090;
         public static final int adView=0x7f090051;
         public static final int always=0x7f09000f;
         public static final int beginning=0x7f090016;
@@ -1210,9 +1210,10 @@ containing a value of this type.
         public static final int btnDonate=0x7f09004f;
         public static final int btnDonateNow=0x7f090046;
         public static final int btnDonatePaypal=0x7f090049;
-        public static final int btnEdit=0x7f09008e;
-        public static final int btnEmail=0x7f090091;
-        public static final int btnMainMenu=0x7f090090;
+        public static final int btnEdit=0x7f09008f;
+        public static final int btnEmail=0x7f090092;
+        public static final int btnMainMenu=0x7f090091;
+        public static final int btnSave=0x7f09008e;
         public static final int btnShare=0x7f090050;
         public static final int btnSubmit=0x7f090075;
         public static final int btnUpgrade=0x7f09004e;
@@ -1395,7 +1396,7 @@ containing a value of this type.
         public static final int main=0x7f0d0000;
     }
     public static final class string {
-        public static final int FMVARV=0x7f0a0038;
+        public static final int FMVARV=0x7f0a003a;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f0a0001;
@@ -1438,7 +1439,7 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
         public static final int aboutflipfree=0x7f0a0029;
         public static final int action_settings=0x7f0a002e;
-        public static final int address=0x7f0a0032;
+        public static final int address=0x7f0a0034;
         public static final int app_name=0x7f0a0027;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
@@ -1463,15 +1464,15 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f0a0021;
-        public static final int banner_ad_unit_id=0x7f0a002f;
-        public static final int bathrooms=0x7f0a0036;
-        public static final int bedrooms=0x7f0a0035;
-        public static final int budgetItems=0x7f0a0039;
+        public static final int banner_ad_unit_id=0x7f0a0031;
+        public static final int bathrooms=0x7f0a0038;
+        public static final int bedrooms=0x7f0a0037;
+        public static final int budgetItems=0x7f0a003b;
         public static final int calculate=0x7f0a002a;
-        public static final int cashoncash=0x7f0a0041;
-        public static final int citystzip=0x7f0a0033;
-        public static final int closholdcosts=0x7f0a003e;
-        public static final int coming_soon=0x7f0a0043;
+        public static final int cashoncash=0x7f0a0043;
+        public static final int citystzip=0x7f0a0035;
+        public static final int closholdcosts=0x7f0a0040;
+        public static final int coming_soon=0x7f0a0045;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -1544,40 +1545,43 @@ containing a value of this type.
          */
         public static final int common_signin_button_text_long=0x7f0a0020;
         public static final int donate=0x7f0a002b;
-        public static final int donations__alert_dialog_title=0x7f0a0050;
-        public static final int donations__button_close=0x7f0a0051;
-        public static final int donations__google_android_market=0x7f0a0045;
-        public static final int donations__google_android_market_description=0x7f0a0048;
-        public static final int donations__google_android_market_not_supported=0x7f0a0047;
-        public static final int donations__google_android_market_not_supported_title=0x7f0a0046;
-        public static final int donations__paypal=0x7f0a0049;
-        public static final int donations__paypal_description=0x7f0a004a;
-        public static final int donations__thanks_dialog=0x7f0a004f;
-        public static final int donations__thanks_dialog_title=0x7f0a004e;
-        public static final int edit=0x7f0a0053;
-        public static final int email=0x7f0a0055;
-        public static final int flipulator=0x7f0a0031;
+        public static final int donations__alert_dialog_title=0x7f0a0052;
+        public static final int donations__button_close=0x7f0a0053;
+        public static final int donations__google_android_market=0x7f0a0047;
+        public static final int donations__google_android_market_description=0x7f0a004a;
+        public static final int donations__google_android_market_not_supported=0x7f0a0049;
+        public static final int donations__google_android_market_not_supported_title=0x7f0a0048;
+        public static final int donations__paypal=0x7f0a004b;
+        public static final int donations__paypal_description=0x7f0a004c;
+        public static final int donations__thanks_dialog=0x7f0a0051;
+        public static final int donations__thanks_dialog_title=0x7f0a0050;
+        public static final int edit=0x7f0a0056;
+        public static final int email=0x7f0a0058;
+        public static final int flipulator=0x7f0a0033;
         public static final int flipulator_free=0x7f0a0028;
-        public static final int help=0x7f0a0057;
-        public static final int main_menu=0x7f0a0054;
-        public static final int mission=0x7f0a0044;
-        public static final int next=0x7f0a0056;
-        public static final int profit=0x7f0a003f;
-        public static final int rehab_budget=0x7f0a003b;
-        public static final int rehab_class=0x7f0a003d;
-        public static final int rehab_number=0x7f0a003a;
-        public static final int rehab_type=0x7f0a003c;
-        public static final int roi=0x7f0a0040;
-        public static final int salePrice=0x7f0a0037;
+        public static final int help=0x7f0a005a;
+        public static final int main_menu=0x7f0a0057;
+        public static final int market_premium=0x7f0a002f;
+        public static final int mission=0x7f0a0046;
+        public static final int next=0x7f0a0059;
+        public static final int play_store_premium=0x7f0a0030;
+        public static final int profit=0x7f0a0041;
+        public static final int rehab_budget=0x7f0a003d;
+        public static final int rehab_class=0x7f0a003f;
+        public static final int rehab_number=0x7f0a003c;
+        public static final int rehab_type=0x7f0a003e;
+        public static final int roi=0x7f0a0042;
+        public static final int salePrice=0x7f0a0039;
+        public static final int save=0x7f0a0055;
         public static final int share=0x7f0a002d;
-        public static final int sq_footage=0x7f0a0034;
-        public static final int submit=0x7f0a0052;
-        public static final int txtDonateNow=0x7f0a004b;
-        public static final int txtDonatePaypal=0x7f0a004c;
-        public static final int txtHowMuch=0x7f0a004d;
+        public static final int sq_footage=0x7f0a0036;
+        public static final int submit=0x7f0a0054;
+        public static final int txtDonateNow=0x7f0a004d;
+        public static final int txtDonatePaypal=0x7f0a004e;
+        public static final int txtHowMuch=0x7f0a004f;
         public static final int upgrade=0x7f0a002c;
-        public static final int upgrade_details=0x7f0a0042;
-        public static final int what_is_it=0x7f0a0030;
+        public static final int upgrade_details=0x7f0a0044;
+        public static final int what_is_it=0x7f0a0032;
     }
     public static final class style {
         /** 

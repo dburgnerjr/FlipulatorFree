@@ -2,8 +2,10 @@ package com.danielburgnerjr.flipulatorfree;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -49,8 +51,13 @@ public class MainActivity extends Activity {
 		final Button btnUpgrade = (Button) findViewById(R.id.btnUpgrade);
 		btnUpgrade.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
-			    Intent intI = new Intent(MainActivity.this, UpgradeActivity.class);
-			    startActivity(intI);
+		        Uri uri = Uri.parse(getResources().getString(R.string.market_premium));
+		        Intent newActivity = new Intent(Intent.ACTION_VIEW, uri);
+		        try {
+		            startActivity(newActivity);
+		        } catch (ActivityNotFoundException e) {
+		            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.play_store_premium))));
+		        }
 			}
 		});
 
