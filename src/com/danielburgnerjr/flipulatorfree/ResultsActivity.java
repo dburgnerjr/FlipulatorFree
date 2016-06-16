@@ -311,6 +311,38 @@ public class ResultsActivity extends Activity {
 	    excelSheet.addCell(lblBudgetItemsList);
 	    excelSheet.mergeCells(1, 21, 5, 24);
 	    
+	    // rehab type
+	    Label lblRehabType;
+	    lblRehabType = new Label(0, 26, "Budget Based On:", timesBold);
+	    String strRehabType = "";
+	    excelSheet.addCell(lblRehabType);
+	    if (calC.getRehabFlag() == 0) {
+	    	strRehabType = "Flat Rate";
+	    }
+	    if (calC.getRehabFlag() == 1) {
+	    	int nPriceSqFt = ((int)calC.getBudget()/calC.getSquareFootage());
+	    	switch (nPriceSqFt) {
+  	  			case 15:
+  	  						strRehabType = "Low";
+  	  						break;
+  	  			case 20:
+  	  			case 25:
+  	  						strRehabType = "Medium";
+  	  						break;
+  	  			case 30:
+  	  						strRehabType = "High";
+  	  						break;
+  	  			case 40:
+  	  						strRehabType = "Super-High";
+  	  						break;
+  	  			case 125:
+  	  						strRehabType = "Bulldozer";
+  	  						break;
+	    	}
+	    }
+	    Label lblRehabTypeValue = new Label(3, 26, strRehabType, timesBold);
+	    excelSheet.addCell(lblRehabTypeValue);
+	    
 	    workbook.write();
 	    workbook.close();		
 	}

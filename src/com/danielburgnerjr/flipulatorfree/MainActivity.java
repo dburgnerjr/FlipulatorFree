@@ -1,5 +1,7 @@
 package com.danielburgnerjr.flipulatorfree;
 
+import java.io.File;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
@@ -20,6 +22,7 @@ import com.google.android.gms.ads.AdView;
 public class MainActivity extends Activity {
 	
 	String strPackName;
+	private Button btnOpenFiles;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,8 @@ public class MainActivity extends Activity {
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+        File myDir = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorFree");
+		String strPath = myDir.getPath();
         RateThisApp.onLaunch(this);
         
 		final Button btnAbout = (Button) findViewById(R.id.btnAbout);
@@ -79,6 +84,20 @@ public class MainActivity extends Activity {
 	   			sAux = sAux + "https://play.google.com/store/apps/details?id=" + strPackName + "\n\n";
 	   			intI.putExtra(Intent.EXTRA_TEXT, sAux);  
 	   			startActivity(Intent.createChooser(intI, "choose one"));
+			}
+		});
+
+		btnOpenFiles = (Button) findViewById(R.id.btnOpenFiles);
+		File fFileList = new File(strPath);
+		File fFileArray[] = fFileList.listFiles();
+		if (fFileArray == null) {
+			btnOpenFiles.setVisibility(View.INVISIBLE);
+		}
+		btnOpenFiles.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				Intent intI = new Intent(MainActivity.this, OpenFilesActivity.class);
+			    startActivity(intI);
+			    finish();
 			}
 		});
 

@@ -79,6 +79,17 @@
         android:background="#690"
         android:text="@string/share"
         android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/btnOpenFiles"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/btnShare"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="#690"
+        android:text="@string/openFiles"
+        android:textColor="#ffffff" />
     
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"

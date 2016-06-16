@@ -35,6 +35,11 @@
 			android:label="About" 
 			android:theme="@style/AppTheme" >
 		</activity>
+		<activity
+			android:name=".OpenFilesActivity"
+			android:label="Open Files"
+			android:theme="@style/AppTheme" >
+		</activity>
         <activity
 			android:name=".CalculateActivity"
 			android:label="Calculate"
