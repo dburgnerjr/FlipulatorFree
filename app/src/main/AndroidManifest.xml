@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.danielburgnerjr.flipulatorfree"
-    android:versionCode="17"
-    android:versionName="1.17.1" >
-
-    <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="23" />
+    android:versionCode="18"
+    android:versionName="1.18" >
 
     <!-- Include required permissions for Google Mobile Ads to run-->
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -24,8 +20,8 @@
         <meta-data android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version" />
         <activity
-            android:name="main.java.com.danielburgnerjr.flipulatorfree.MainActivity"
-            android:label="@string/app_name"
+            android:name=".MainActivity"
+            android:exported="true"
             android:theme="@style/FlipFreeOpenScreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,33 +29,33 @@
             </intent-filter>
         </activity>
         <activity
-			android:name="main.java.com.danielburgnerjr.flipulatorfree.AboutFlipulatorFree"
+			android:name=".AboutFlipulatorFree"
 			android:label="About" 
 			android:theme="@style/AppTheme" >
 		</activity>
 		<activity
-			android:name="main.java.com.danielburgnerjr.flipulatorfree.OpenFilesActivity"
+			android:name=".OpenFilesActivity"
 			android:label="Open Files"
 			android:theme="@style/AppTheme" >
 		</activity>
         <activity
-			android:name="main.java.com.danielburgnerjr.flipulatorfree.CalculateActivity"
+			android:name=".CalculateActivity"
 			android:label="Calculate"
 			android:windowSoftInputMode="stateVisible|adjustPan"
 			android:theme="@style/AppTheme" >
 		</activity>
         <activity
-			android:name="main.java.com.danielburgnerjr.flipulatorfree.ResultsActivity"
+			android:name=".ResultsActivity"
 			android:label="Results"
 			android:theme="@style/AppTheme" >
 		</activity>
         <activity
-			android:name="main.java.com.danielburgnerjr.flipulatorfree.UpgradeActivity"
+			android:name=".UpgradeActivity"
 			android:label="Upgrade"
 			android:theme="@style/AppTheme" >
 		</activity>
         <activity
-			android:name="main.java.com.danielburgnerjr.flipulatorfree.DonateActivity"
+			android:name=".DonateActivity"
 			android:label="Donate"
 			android:theme="@style/AppTheme" >
 		</activity>
