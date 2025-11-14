@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="main.java.com.danielburgnerjr.flipulatorfree.DonateActivity" >
+    tools:context=".DonateActivity" >
 
     <LinearLayout
         android:id="@+id/DonateActivity"
@@ -45,7 +45,7 @@
         <Spinner
             android:id="@+id/spnDonate"
             android:layout_width="match_parent"
-            android:layout_height="40sp"
+            android:layout_height="50sp"
             android:layout_weight="1"
             android:prompt="@string/txtHowMuch" />
 
@@ -53,7 +53,7 @@
 	        <Button
 	            android:id="@+id/btnDonateNow"
 	            android:layout_width="match_parent"
-	            android:layout_height="40sp"
+	            android:layout_height="48sp"
 	            android:layout_weight="1"
 	            android:text="@string/txtDonateNow"
 	            android:background="#690"
@@ -82,9 +82,9 @@
 	    <Button
 	        android:id="@+id/btnDonatePaypal"
 	        android:layout_width="match_parent"
-	        android:layout_height="40sp"
+	        android:layout_height="48sp"
 	        android:layout_gravity="center_vertical"
-	        android:layout_marginLeft="8dp"
+	        android:layout_marginStart="8dp"
 	        android:background="#690"
             android:textColor="#ffffff"
 	        android:text="@string/txtDonatePaypal" />

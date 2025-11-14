@@ -85,5 +85,6 @@
     <string name="email">Email Results</string>
     <string name="next">Next</string>
     <string name="help">Help</string>
-    
+    <string name="list_of_properties">List of Properties</string>
+
 </resources>

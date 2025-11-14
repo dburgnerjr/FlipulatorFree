@@ -2,18 +2,15 @@ package com.danielburgnerjr.flipulatorfree;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.danielburgnerjr.flipulatorfree.util.IabHelper;
 import com.danielburgnerjr.flipulatorfree.util.IabResult;
@@ -22,11 +19,7 @@ import com.danielburgnerjr.flipulatorfree.util.Purchase;
 public class DonateActivity extends Activity {
 
     private Spinner mGoogleSpinner;
-    private Button btnDonateNow;				// donate google
-    private Button btnPayPal;				    // donate paypal
-    private TextView txtPayPalTitle;			// Paypal title
-    private TextView txtPayPalDesc;				// Paypal description
-    
+
     // Google Play helper object
     private IabHelper mHelper;
 
@@ -60,29 +53,26 @@ public class DonateActivity extends Activity {
 		mGooglePubkey = GOOGLE_PUBKEY;
 		mGoogleCatalog = GOOGLE_CATALOG;
 		mGoogleCatalogValues = getResources().getStringArray(R.array.donation_google_catalog_values);
-		
-		txtPayPalTitle = (TextView)findViewById(R.id.txtPaypalTitle);
-		txtPayPalDesc = (TextView)findViewById(R.id.txtPaypalDescription);
+
+        // Paypal title
+        TextView txtPayPalTitle = findViewById(R.id.txtPaypalTitle);
+        // Paypal description
+        TextView txtPayPalDesc = findViewById(R.id.txtPaypalDescription);
 
         // choose donation amount
-		mGoogleSpinner = (Spinner) findViewById(R.id.spnDonate);
+		mGoogleSpinner = findViewById(R.id.spnDonate);
         ArrayAdapter<CharSequence> adapter;
         if (mDebug) {
-            adapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, CATALOG_DEBUG);
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CATALOG_DEBUG);
         } else {
-            adapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, mGoogleCatalogValues);
+            adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, mGoogleCatalogValues);
         }
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mGoogleSpinner.setAdapter(adapter);
-		btnDonateNow = (Button) findViewById(R.id.btnDonateNow);
+        // donate google
+        Button btnDonateNow = findViewById(R.id.btnDonateNow);
 		
-        btnDonateNow.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                donateGoogleOnClick(v);
-            }
-        });
+        btnDonateNow.setOnClickListener(this::donateGoogleOnClick);
 
         // Create the helper, passing it our context and the public key to verify signatures with
         if (mDebug)
@@ -96,37 +86,26 @@ public class DonateActivity extends Activity {
         // will be called once setup completes.
         if (mDebug)
             Log.d(TAG, "Starting setup.");
-        mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-            public void onIabSetupFinished(IabResult result) {
-                if (mDebug)
-                    Log.d(TAG, "Setup finished.");
+        mHelper.startSetup(result -> {
+            if (mDebug)
+                Log.d(TAG, "Setup finished.");
 
-                if (!result.isSuccess()) {
-                    // Oh noes, there was a problem.
-                    openDialog(android.R.drawable.ic_dialog_alert, R.string.donations__google_android_market_not_supported_title,
-                            getString(R.string.donations__google_android_market_not_supported));
-                    return;
-                }
-
-                // Have we been disposed of in the meantime? If so, quit.
-                if (mHelper == null) return;
+            if (!result.isSuccess()) {
+                // Oh noes, there was a problem.
+                openDialog(android.R.drawable.ic_dialog_alert, R.string.donations__google_android_market_not_supported_title,
+                        getString(R.string.donations__google_android_market_not_supported));
             }
         });
 
-        btnPayPal = (Button) findViewById(R.id.btnDonatePaypal);
+        // donate paypal
+        Button btnPayPal = findViewById(R.id.btnDonatePaypal);
 
         // set PayPal invisible for Google Play
         txtPayPalTitle.setVisibility(View.INVISIBLE);
         txtPayPalDesc.setVisibility(View.INVISIBLE);
         btnPayPal.setVisibility(View.INVISIBLE);
         
-        btnPayPal.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                donatePayPalOnClick(v);
-            }
-        });
+        btnPayPal.setOnClickListener(this::donatePayPalOnClick);
 
 	}
 
@@ -140,12 +119,7 @@ public class DonateActivity extends Activity {
         dialog.setMessage(message);
         dialog.setCancelable(true);
         dialog.setNeutralButton(R.string.donations__button_close,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }
+                (dialog1, which) -> dialog1.dismiss()
         );
         dialog.show();
     }

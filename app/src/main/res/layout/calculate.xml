@@ -20,45 +20,48 @@
 		    <LinearLayout
 		        android:id="@+id/llStreetAddress"
 		        android:layout_width="match_parent"
-		        android:layout_height="35sp"
+		        android:layout_height="48sp"
 		        android:layout_marginTop="10dp"
 		        android:orientation="horizontal" >
 		
 		        <TextView
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
 		            android:text="@string/address" />
 		
 		        <EditText
 		            android:id="@+id/txtAddress"
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
-		            android:textSize="12sp"
+                    android:autofillHints=""
+                    android:textSize="12sp"
 		            android:ems="10"
+                    android:hint="@string/address"
 		            android:inputType="text" />
 		    </LinearLayout>
 		
 		    <LinearLayout
 		        android:id="@+id/llCityStZip"
 		        android:layout_width="match_parent"
-		        android:layout_height="35sp"
+		        android:layout_height="48sp"
 		        android:layout_below="@+id/llStreetAddress"
 		        android:orientation="horizontal" >
 
 		        <TextView
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
 		            android:text="@string/citystzip" />
 		
 		        <EditText
 		            android:id="@+id/txtCityStZip"
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
-		            android:textSize="12sp"
+                    android:autofillHints=""
+                    android:textSize="12sp"
 		            android:ems="10"
 		            android:inputType="text" />
 		        		
@@ -67,22 +70,23 @@
 		   <LinearLayout
 		        android:id="@+id/llSquareFootage"
 		        android:layout_width="match_parent"
-		        android:layout_height="35sp"
+		        android:layout_height="48sp"
 		        android:layout_below="@+id/llCityStZip"
 		        android:orientation="horizontal" >
 		
 		        <TextView
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
 		            android:text="@string/sq_footage" />
 		
 		        <EditText
 		            android:id="@+id/txtSq_Footage"
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
-		            android:textSize="12sp"
+                    android:autofillHints=""
+                    android:textSize="12sp"
 		            android:ems="10"
 		            android:inputType="numberDecimal" />
 		    </LinearLayout>
@@ -90,22 +94,23 @@
 		    <LinearLayout
 		        android:id="@+id/llBedrooms"
 		        android:layout_width="match_parent"
-		        android:layout_height="35sp"
+		        android:layout_height="48sp"
 		        android:layout_below="@+id/llSquareFootage"
 		        android:orientation="horizontal" >
 		
 		        <TextView
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
 		            android:text="@string/bedrooms" />
 		
 		        <EditText
 		            android:id="@+id/txtBedrooms"
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
-		            android:textSize="12sp"
+                    android:autofillHints=""
+                    android:textSize="12sp"
 		            android:ems="10"
 		            android:inputType="numberDecimal" />
 		    </LinearLayout>
@@ -113,22 +118,23 @@
 		    <LinearLayout
 		        android:id="@+id/llBathrooms"
 		        android:layout_width="match_parent"
-		        android:layout_height="35sp"
+		        android:layout_height="48sp"
 		        android:layout_below="@+id/llBedrooms"
 		        android:orientation="horizontal" >
 		
 		        <TextView
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
 		            android:text="@string/bathrooms" />
 		
 		        <EditText
 		            android:id="@+id/txtBathrooms"
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
-		            android:textSize="12sp"
+                    android:autofillHints=""
+                    android:textSize="12sp"
 		            android:ems="10"
 		            android:inputType="numberDecimal" />
 		    </LinearLayout>
@@ -136,22 +142,23 @@
 		    <LinearLayout
 		        android:id="@+id/llSalePrice"
 		        android:layout_width="match_parent"
-		        android:layout_height="35sp"
+		        android:layout_height="48sp"
 		        android:layout_below="@+id/llBathrooms"
 		        android:orientation="horizontal" >
 		
 		        <TextView
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
 		            android:text="@string/salePrice" />
 		
 		        <EditText
 		            android:id="@+id/txtSalePrice"
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
-		            android:textSize="12sp"
+                    android:autofillHints=""
+                    android:textSize="12sp"
 		            android:ems="10"
 		            android:inputType="numberDecimal" />
 		    </LinearLayout>
@@ -159,22 +166,23 @@
 		    <LinearLayout
 		        android:id="@+id/llFMVARV"
 		        android:layout_width="match_parent"
-		        android:layout_height="35sp"
+		        android:layout_height="48sp"
 		        android:layout_below="@+id/llSalePrice"
 		        android:orientation="horizontal" >
 		
 		        <TextView
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
 		            android:text="@string/FMVARV" />
 		
 		        <EditText
 		            android:id="@+id/txtFMVARV"
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
-		            android:textSize="12sp"
+                    android:autofillHints=""
+                    android:textSize="12sp"
 		            android:ems="10"
 		            android:inputType="numberDecimal" />
 		    </LinearLayout>
@@ -203,13 +211,14 @@
 		        <EditText
 		            android:id="@+id/txtBudgetItems"
 		            android:layout_width="fill_parent" 
-		           	android:layout_height="wrap_content" 
-		            android:scrollbars="vertical"
+		           	android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:scrollbars="vertical"
 		            android:inputType="textMultiLine"
 		            android:lines="4"
 		            android:minLines="2"
 		            android:maxLines="4"
-		            android:gravity="top|left"
+		            android:gravity="top|start"
 		            android:textSize="12sp"
 		            android:ems="10"
 		            android:imeOptions="actionDone" />
@@ -218,7 +227,7 @@
 		    <RadioGroup
 		        android:id="@+id/rdoRehab"
 		        android:layout_width="match_parent"
-		        android:layout_height="30sp"
+		        android:layout_height="48sp"
 		        android:layout_gravity="center_horizontal"
 		        android:layout_below="@+id/llBudgetItemsTxt"
 		        android:orientation="horizontal" >
@@ -226,7 +235,7 @@
 		        <RadioButton
 		            android:id="@+id/rdoRehabNumber"
 		            android:layout_width="match_parent"
-		            android:layout_height="30sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
 		            android:textSize="15sp"
 		            android:text="@string/rehab_number" />
@@ -234,7 +243,7 @@
 		        <RadioButton
 		            android:id="@+id/rdoRehabType"
 		            android:layout_width="match_parent"
-		            android:layout_height="30sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
 		            android:textSize="15sp"
 		            android:text="@string/rehab_type" />
@@ -243,23 +252,24 @@
 		    <LinearLayout
 		        android:id="@+id/llRehabBudget"
 		        android:layout_width="match_parent"
-		        android:layout_height="35sp"
+		        android:layout_height="48sp"
 		        android:layout_below="@+id/rdoRehab"
 		        android:orientation="horizontal" >
 		
 		        <TextView
 		            android:id="@+id/tvRehabBudget"
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
 		            android:text="@string/rehab_budget" />
 		
 		        <EditText
 		            android:id="@+id/txtRehabBudget"
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
-		            android:textSize="12sp"
+                    android:autofillHints=""
+                    android:textSize="12sp"
 		            android:ems="10"
 		            android:imeOptions="actionDone"
 		            android:inputType="numberDecimal" />
@@ -275,14 +285,14 @@
 		        <TextView
 		            android:id="@+id/tvRehabType"
 		            android:layout_width="0sp"
-		            android:layout_height="35sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
 		            android:text="@string/rehab_class" />
 		
 		        <Spinner
 		            android:id="@+id/spnRehabType"
 		            android:layout_width="0sp"
-		            android:layout_height="40sp"
+		            android:layout_height="48sp"
 		            android:layout_weight="0.5"
 		            android:ems="10" />
 		    </LinearLayout>		    
@@ -301,15 +311,17 @@
     </ScrollView>
     <LinearLayout
         android:id="@+id/llHelpSubmit"
+        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
-        android:layout_height="35sp"
+        android:layout_height="54sp"
         android:layout_above="@+id/llAdCalcView"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/txtHelp"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="100sp"
-            android:layout_height="35sp"
+            android:layout_height="54sp"
             android:layout_weight="0.5"
             android:text="@string/help"
             android:background="#690"
@@ -317,8 +329,9 @@
 
         <Button
             android:id="@+id/btnSubmit"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="100sp"
-            android:layout_height="35sp"
+            android:layout_height="54sp"
             android:layout_weight="0.5"
             android:onClick="nextPage"
             android:text="@string/submit"

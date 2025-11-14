@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -64,43 +62,37 @@ public class RateThisApp {
 	
 	    Button b1 = new Button(mContext);
 	    b1.setText("Rate " + APP_TITLE);
-	    b1.setOnClickListener(new OnClickListener() {
-	        public void onClick(View v) {
-	            mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + APP_PNAME)));
-	            if (editor != null) {
-	                editor.putBoolean("dontshowagain", true);
-	                editor.commit();
-	            }
-	            dialog.dismiss();
-	        }
-	    });        
+	    b1.setOnClickListener(v -> {
+            mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + APP_PNAME)));
+            if (editor != null) {
+                editor.putBoolean("dontshowagain", true);
+                editor.commit();
+            }
+            dialog.dismiss();
+        });
 	    ll.addView(b1);
 	
 	    Button b2 = new Button(mContext);
 	    b2.setText("Remind me later");
-	    b2.setOnClickListener(new OnClickListener() {
-	        public void onClick(View v) {
-	            if (editor != null) {
-	                editor.putLong("lLaunchCount", 0);
-	                editor.putLong("lDateFirstLaunch", 0);
-	                editor.commit();
-	            }
-	            dialog.dismiss();
-	        }
-	    });
+	    b2.setOnClickListener(v -> {
+            if (editor != null) {
+                editor.putLong("lLaunchCount", 0);
+                editor.putLong("lDateFirstLaunch", 0);
+                editor.commit();
+            }
+            dialog.dismiss();
+        });
 	    ll.addView(b2);
 	
 	    Button b3 = new Button(mContext);
 	    b3.setText("No, thanks");
-	    b3.setOnClickListener(new OnClickListener() {
-	        public void onClick(View v) {
-	            if (editor != null) {
-	                editor.putBoolean("dontshowagain", true);
-	                editor.commit();
-	            }
-	            dialog.dismiss();
-	        }
-	    });
+	    b3.setOnClickListener(v -> {
+            if (editor != null) {
+                editor.putBoolean("dontshowagain", true);
+                editor.commit();
+            }
+            dialog.dismiss();
+        });
 	    ll.addView(b3);
 	
 	    dialog.setContentView(ll);        

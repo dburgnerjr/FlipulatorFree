@@ -1,3 +1,5 @@
+package com.android.vending.billing;
+
 /*
  * Copyright (C) 2012 The Android Open Source Project
  *
@@ -14,7 +16,6 @@
  * limitations under the License.
  */
 
-package com.android.vending.billing;
 
 import android.os.Bundle;
 
