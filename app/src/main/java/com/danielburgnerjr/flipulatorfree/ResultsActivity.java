@@ -98,15 +98,15 @@ public class ResultsActivity extends Activity {
 		calC = (Calculate) intI.getSerializableExtra("Calculate");
 
         assert calC != null;
-        etStreetAddress.setText(calC.getAddress());
-		etCityStZipCode.setText(calC.getCityStZip());
-		etSF.setText(calC.getSquareFootage());
-		etFMVARV.setText("$" + String.format("%.0f", calC.getFMVARV()));
-		etSalesPrice.setText("$" + String.format("%.0f", calC.getSalesPrice()));
-		etRehabBudget.setText("$" + String.format("%.0f", calC.getBudget()));
-		etBudgetItems.setText(calC.getBudgetItems());
+        //etStreetAddress.setText(calC.getAddress());
+		//etCityStZipCode.setText(calC.getCityStZip());
+		//etSF.setText(calC.getSquareFootage());
+		//etFMVARV.setText("$" + String.format("%.0f", calC.getFMVARV()));
+		//etSalesPrice.setText("$" + String.format("%.0f", calC.getSalesPrice()));
+		//etRehabBudget.setText("$" + String.format("%.0f", calC.getBudget()));
+//		etBudgetItems.setText(calC.getBudgetItems());
 		
-		resR = new Results();
+		/*resR = new Results();
 		resR.setClosHoldCosts(calC.getFMVARV());
 		resR.setProfit(calC.getSalesPrice(), calC.getFMVARV(), calC.getBudget());
 		resR.setROI(calC.getFMVARV());
@@ -130,7 +130,7 @@ public class ResultsActivity extends Activity {
 		etClosHoldCosts.setText("$" + String.format("%.0f", resR.getClosHoldCosts()));
 		etProfit.setText("$" + String.format("%.0f", resR.getProfit()));
 		etROI.setText(String.format("%.1f", resR.getROI()) + "%");
-		etCashOnCash.setText(String.format("%.1f", resR.getCashOnCash()) + "%");
+		etCashOnCash.setText(String.format("%.1f", resR.getCashOnCash()) + "%");*/
 	}
 
 	// returns to main menu

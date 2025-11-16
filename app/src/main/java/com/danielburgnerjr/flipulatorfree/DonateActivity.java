@@ -12,16 +12,16 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.danielburgnerjr.flipulatorfree.util.IabHelper;
-import com.danielburgnerjr.flipulatorfree.util.IabResult;
-import com.danielburgnerjr.flipulatorfree.util.Purchase;
+//import com.danielburgnerjr.flipulatorfree.util.IabHelper;
+//import com.danielburgnerjr.flipulatorfree.util.IabResult;
+//import com.danielburgnerjr.flipulatorfree.util.Purchase;
 
 public class DonateActivity extends Activity {
 
     private Spinner mGoogleSpinner;
 
     // Google Play helper object
-    private IabHelper mHelper;
+    //private IabHelper mHelper;
 
     protected boolean mDebug = false;
 
@@ -77,15 +77,16 @@ public class DonateActivity extends Activity {
         // Create the helper, passing it our context and the public key to verify signatures with
         if (mDebug)
             Log.d(TAG, "Creating IAB helper.");
-        mHelper = new IabHelper(this, mGooglePubkey);
+        //mHelper = new IabHelper(this, mGooglePubkey);
 
         // enable debug logging (for a production application, you should set this to false).
-        mHelper.enableDebugLogging(mDebug);
+        //mHelper.enableDebugLogging(mDebug);
 
         // Start setup. This is asynchronous and the specified listener
         // will be called once setup completes.
         if (mDebug)
             Log.d(TAG, "Starting setup.");
+/*
         mHelper.startSetup(result -> {
             if (mDebug)
                 Log.d(TAG, "Setup finished.");
@@ -96,6 +97,7 @@ public class DonateActivity extends Activity {
                         getString(R.string.donations__google_android_market_not_supported));
             }
         });
+*/
 
         // donate paypal
         Button btnPayPal = findViewById(R.id.btnDonatePaypal);
@@ -133,6 +135,7 @@ public class DonateActivity extends Activity {
         if (mDebug)
             Log.d(TAG, "selected item in spinner: " + index);
 
+/*
         if (mDebug) {
             // when debugging, choose android.test.x item
         	//Toast.makeText(getApplicationContext(), CATALOG_DEBUG[index], Toast.LENGTH_LONG).show();
@@ -145,9 +148,11 @@ public class DonateActivity extends Activity {
             		mGoogleCatalog[index], IabHelper.ITEM_TYPE_INAPP,
                     0, mPurchaseFinishedListener, null);
         }
+*/
     }
 
     // Callback for when a purchase is finished
+/*
     IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
         public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
             if (mDebug)
@@ -169,8 +174,10 @@ public class DonateActivity extends Activity {
             }
         }
     };
+*/
 
     // Called when consumption is complete
+/*
     IabHelper.OnConsumeFinishedListener mConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
         public void onConsumeFinished(Purchase purchase, IabResult result) {
             if (mDebug)
@@ -187,6 +194,7 @@ public class DonateActivity extends Activity {
                 Log.d(TAG, "End consumption flow.");
         }
     };
+*/
 
     /**
      * Donate Paypal button executes link to Paypal donation page
@@ -202,7 +210,8 @@ public class DonateActivity extends Activity {
      * Needed for Google Play In-app Billing. It uses startIntentSenderForResult(). The result is not propagated to
      * the Fragment like in startActivityForResult(). Thus we need to propagate manually to our Fragment.
      */
-    @Override
+    //@Override
+/*
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (mDebug)
             Log.d(TAG, "onActivityResult(" + requestCode + "," + resultCode + "," + data);
@@ -219,4 +228,5 @@ public class DonateActivity extends Activity {
                 Log.d(TAG, "onActivityResult handled by IABUtil.");
         }
     }
+*/
 }

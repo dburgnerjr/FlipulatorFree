@@ -13,8 +13,8 @@
     <string name="market_premium">market://details?id=com.danielburgnerjr.flipulatorpremium</string>
     <string name="play_store_premium">https://play.google.com/store/apps/details?id=com.danielburgnerjr.flipulatorpremium</string>
     
+	<string name="admob_app_id">ca-app-pub-8379108590476103~3315190075</string>
 	<string name="banner_ad_unit_id">ca-app-pub-8379108590476103/7745389673</string>
-	
 	<string name="what_is_it">What Is A Flipulator?</string>    
     <string name="flipulator">A Flipulator is a real estate investment calculator designed to determine the viability of rehabbing a house to determine profitability.
                               Profitability is determined by using the flat fee and rehab type rehab models.</string>

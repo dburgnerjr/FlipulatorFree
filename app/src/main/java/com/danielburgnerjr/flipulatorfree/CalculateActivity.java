@@ -45,7 +45,7 @@ public class CalculateActivity extends Activity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdCalcView.loadAd(adRequest);
 
-		etAddress = findViewById(R.id.txtAddress);
+        etAddress = findViewById(R.id.txtAddress);
 		etCityStZip = findViewById(R.id.txtCityStZip);
 		etSquareFootage = findViewById(R.id.txtSq_Footage);
 		etBedrooms = findViewById(R.id.txtBedrooms);
@@ -59,7 +59,7 @@ public class CalculateActivity extends Activity {
 		ArrayAdapter<CharSequence> aradAdapter = ArrayAdapter.createFromResource(
 				  this, R.array.rehab_type, android.R.layout.simple_spinner_item );
 		aradAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
-		ArrayAdapter<String> aradRehabType = new ArrayAdapter<>(this, R.layout.rehab_type, R.array.rehab_type);
+		//ArrayAdapter<String> aradRehabType = new ArrayAdapter<>(this, R.layout.rehab_type, R.array.rehab_type);
 		
 		rgRehab = findViewById(R.id.rdoRehab);
         // rehab number
@@ -225,29 +225,23 @@ public class CalculateActivity extends Activity {
 			int nSelected = rgRehab.getCheckedRadioButtonId();
             // rehab button id
             RadioButton rbRehab = findViewById(nSelected);
-			
-			// determines Rehab object by radio button input
-			switch (nSelected) {
-			
-				case R.id.rdoRehabNumber:
-											if (etRehabBudget.getText().toString().isEmpty()) {
-												Toast.makeText(getApplicationContext(), "Must Enter Rehab Budget", Toast.LENGTH_SHORT).show();
-											} else {
-                                                // budget
-                                                double dB = Double.parseDouble(etRehabBudget.getText().toString());
-												calC.setBudget(dB);
-											}
-											calC.setRehabFlag(0);
-											break;
-											
-				case R.id.rdoRehabType:
-											String strRTSel = spnRehabType.getSelectedItem().toString();
-											calC.calcBudgetRehabType(strRTSel);
-											calC.setRehabFlag(1);
-											break;
-											
+
+            // determines Rehab object by radio button input
+			if (nSelected == R.id.rdoRehabNumber) {
+                if (etRehabBudget.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Must Enter Rehab Budget", Toast.LENGTH_SHORT).show();
+                } else {
+                    // budget
+                    double dB = Double.parseDouble(etRehabBudget.getText().toString());
+                    calC.setBudget(dB);
+                }
+                calC.setRehabFlag(0);
+            } else {
+                String strRTSel = spnRehabType.getSelectedItem().toString();
+                calC.calcBudgetRehabType(strRTSel);
+                calC.setRehabFlag(1);
 			}
-			
+
 			// stores Calculate object in Intent
 			intI.putExtra("Calculate", calC);	    
 			startActivity(intI);

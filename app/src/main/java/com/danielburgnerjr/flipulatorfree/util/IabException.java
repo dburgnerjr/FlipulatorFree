@@ -22,6 +22,7 @@ package com.danielburgnerjr.flipulatorfree.util;
  * To get the IAB result that caused this exception to be thrown,
  * call {@link #getResult()}.
  */
+/*
 public class IabException extends Exception {
     IabResult mResult;
 
@@ -39,6 +40,8 @@ public class IabException extends Exception {
         this(new IabResult(response, message), cause);
     }
 
-    /** Returns the IAB result (error) that this exception signals. */
+    */
+/** Returns the IAB result (error) that this exception signals. *//*
+
     public IabResult getResult() { return mResult; }
-}
+}*/

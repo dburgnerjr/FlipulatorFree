@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
  * can also inquire whether a result is a success or a failure by
  * calling {@link #isSuccess()} and {@link #isFailure()}.
  */
+/*
 public class IabResult {
     int mResponse;
     String mMessage;
@@ -47,3 +48,4 @@ public class IabResult {
     public String toString() { return "IabResult: " + getMessage(); }
 }
 
+*/
