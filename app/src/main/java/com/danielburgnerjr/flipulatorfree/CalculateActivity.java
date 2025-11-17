@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import java.util.Locale;
+
 public class CalculateActivity extends Activity {
 	
 	final Context cntC = this;
@@ -54,7 +56,8 @@ public class CalculateActivity extends Activity {
 		etFMVARV = findViewById(R.id.txtFMVARV);
 		etBudgetItems = findViewById(R.id.txtBudgetItems);
         // help
-        Button btnHelp = findViewById(R.id.txtHelp);
+        findViewById(R.id.txtHelp);
+        Button btnHelp;
 		
 		ArrayAdapter<CharSequence> aradAdapter = ArrayAdapter.createFromResource(
 				  this, R.array.rehab_type, android.R.layout.simple_spinner_item );
@@ -147,11 +150,11 @@ public class CalculateActivity extends Activity {
 			// set fields to member variables of Calculate object
 			etAddress.setText(calR.getAddress());
 			etCityStZip.setText(calR.getCityStZip());
-			etSquareFootage.setText(calR.getSquareFootage());
-			etBedrooms.setText(calR.getBedrooms());
-			etBathrooms.setText(calR.getBathrooms() + "");
-			etSalesPrice.setText((int) calR.getSalesPrice());
-			etFMVARV.setText((int) calR.getFMVARV());
+			etSquareFootage.setText(String.format(Locale.US, "%d", calR.getSquareFootage()));
+			etBedrooms.setText(String.format(Locale.US, "%d", calR.getBedrooms()));
+			etBathrooms.setText(String.format(Locale.US, "%.1f", calR.getBathrooms()));
+			etSalesPrice.setText(String.format(Locale.US,"%.0f", calR.getSalesPrice()));
+			etFMVARV.setText(String.format(Locale.US,"%.0f", calR.getFMVARV()));
 			etBudgetItems.setText(calR.getBudgetItems());
 			if (calR.getRehabFlag() == 0) {
 				  rbRehab1.setChecked(true);
@@ -160,7 +163,7 @@ public class CalculateActivity extends Activity {
 	        	  etRehabBudget.setVisibility(View.VISIBLE);
 	        	  tvRehabType.setVisibility(View.INVISIBLE);
 	        	  spnRehabType.setVisibility(View.INVISIBLE);
-	        	  etRehabBudget.setText((int) calR.getBudget());
+	        	  etRehabBudget.setText(String.format(Locale.US,"%.0f", calR.getBudget()));
 			} else {
 				  rbRehab1.setChecked(false);
 				  rbRehab2.setChecked(true);

@@ -98,15 +98,15 @@ public class ResultsActivity extends Activity {
 		calC = (Calculate) intI.getSerializableExtra("Calculate");
 
         assert calC != null;
-        //etStreetAddress.setText(calC.getAddress());
-		//etCityStZipCode.setText(calC.getCityStZip());
-		//etSF.setText(calC.getSquareFootage());
-		//etFMVARV.setText("$" + String.format("%.0f", calC.getFMVARV()));
-		//etSalesPrice.setText("$" + String.format("%.0f", calC.getSalesPrice()));
-		//etRehabBudget.setText("$" + String.format("%.0f", calC.getBudget()));
-//		etBudgetItems.setText(calC.getBudgetItems());
+        etStreetAddress.setText(calC.getAddress());
+		etCityStZipCode.setText(calC.getCityStZip());
+		etSF.setText(String.format(Locale.US, "%d", calC.getSquareFootage()));
+		etFMVARV.setText(String.format(Locale.US, "$%.0f", calC.getFMVARV()));
+		etSalesPrice.setText(String.format(Locale.US,"$%.0f", calC.getSalesPrice()));
+		etRehabBudget.setText(String.format(Locale.US,"$%.0f", calC.getBudget()));
+		etBudgetItems.setText(calC.getBudgetItems());
 		
-		/*resR = new Results();
+		resR = new Results();
 		resR.setClosHoldCosts(calC.getFMVARV());
 		resR.setProfit(calC.getSalesPrice(), calC.getFMVARV(), calC.getBudget());
 		resR.setROI(calC.getFMVARV());
@@ -127,10 +127,10 @@ public class ResultsActivity extends Activity {
 		}
 		resR.setCashOnCash(calC.getBudget());
 		
-		etClosHoldCosts.setText("$" + String.format("%.0f", resR.getClosHoldCosts()));
-		etProfit.setText("$" + String.format("%.0f", resR.getProfit()));
-		etROI.setText(String.format("%.1f", resR.getROI()) + "%");
-		etCashOnCash.setText(String.format("%.1f", resR.getCashOnCash()) + "%");*/
+		etClosHoldCosts.setText(String.format(Locale.US, "$%.0f", resR.getClosHoldCosts()));
+		etProfit.setText(String.format(Locale.US,"$%.0f", resR.getProfit()));
+		etROI.setText(String.format(Locale.US,"%.1f%%", resR.getROI()));
+		etCashOnCash.setText(String.format(Locale.US,"%.1f%%", resR.getCashOnCash()));
 	}
 
 	// returns to main menu
@@ -352,7 +352,7 @@ public class ResultsActivity extends Activity {
 		Intent intEmailActivity = new Intent(Intent.ACTION_SEND);
 		intEmailActivity.putExtra(Intent.EXTRA_EMAIL, new String[]{});
 		intEmailActivity.putExtra(Intent.EXTRA_SUBJECT, "Flipulator Free results for: " + calC.getAddress() + " " + calC.getCityStZip());
-		intEmailActivity.putExtra(Intent.EXTRA_STREAM, Uri.parse("file:///"+  file));
+		intEmailActivity.putExtra(Intent.EXTRA_STREAM, Uri.parse("content:///"+  file));
 		intEmailActivity.setType("application/excel");
    		startActivity(intEmailActivity);
 
@@ -364,14 +364,14 @@ public class ResultsActivity extends Activity {
 		strMessage += "City, State ZIP:        " + calC.getCityStZip() + "\n";
 		strMessage += "Square Footage:         " + calC.getSquareFootage() + "\n";
 		strMessage += "Bedrooms/Bathrooms:     " + calC.getBedrooms() + " BR " + calC.getBathrooms() + " BA\n";
-		strMessage += "After Repair Value:    $" + String.format("%.0f", calC.getFMVARV()) + "\n";
-		strMessage += "Sales Price:           $" + String.format("%.0f", calC.getSalesPrice()) + "\n";
-		strMessage += "Estimated Budget:      $" + String.format("%.0f", calC.getBudget()) + "\n";
+		strMessage += "After Repair Value:    $" + String.format(Locale.US,"%.0f", calC.getFMVARV()) + "\n";
+		strMessage += "Sales Price:           $" + String.format(Locale.US,"%.0f", calC.getSalesPrice()) + "\n";
+		strMessage += "Estimated Budget:      $" + String.format(Locale.US,"%.0f", calC.getBudget()) + "\n";
 		strMessage += "Budget Items:           " + calC.getBudgetItems() + "\n";
-		strMessage += "Closing/Holding Costs: $" + String.format("%.0f", resR.getClosHoldCosts()) + "\n";
-		strMessage += "Profit:                $" + String.format("%.0f", resR.getProfit()) + "\n";
-		strMessage += "ROI:                    " + String.format("%.1f", resR.getROI()) + "%\n";
-		strMessage += "Cash on Cash Return:    " + String.format("%.1f", resR.getCashOnCash()) + "%\n";
+		strMessage += "Closing/Holding Costs: $" + String.format(Locale.US,"%.0f", resR.getClosHoldCosts()) + "\n";
+		strMessage += "Profit:                $" + String.format(Locale.US,"%.0f", resR.getProfit()) + "\n";
+		strMessage += "ROI:                    " + String.format(Locale.US,"%.1f", resR.getROI()) + "%\n";
+		strMessage += "Cash on Cash Return:    " + String.format(Locale.US,"%.1f", resR.getCashOnCash()) + "%\n";
 		Intent intEmailActivity = new Intent(Intent.ACTION_SEND);
 		intEmailActivity.putExtra(Intent.EXTRA_EMAIL, new String[]{});
 		intEmailActivity.putExtra(Intent.EXTRA_SUBJECT, "Flipulator Free results for: " + calC.getAddress() + " " + calC.getCityStZip());
