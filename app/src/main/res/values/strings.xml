@@ -55,6 +55,9 @@
     <string name="donations__paypal_description">You can choose how much you want to donate after clicking the button!</string>
     <string name="txtDonateNow">Donate!</string>
     <string name="txtDonatePaypal">Donate with Paypal</string>
+    <string name="donations_cash_app">Cash App</string>
+    <string name="donations_cash_app_description">You can choose how much you want to donate after clicking the button!</string>
+    <string name="txtDonateCashApp">Donate with Cash App</string>
     <string name="txtHowMuch">How much?</string>
     <string name="donations__thanks_dialog_title">Thanks!</string>
     <string name="donations__thanks_dialog">Thanks for donating!\nI really appreciate this!</string>

@@ -2,6 +2,7 @@ package com.danielburgnerjr.flipulatorfree;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesUpdatedListener;
+
+import java.util.List;
 
 //import com.danielburgnerjr.flipulatorfree.util.IabHelper;
 //import com.danielburgnerjr.flipulatorfree.util.IabResult;
@@ -59,6 +67,11 @@ public class DonateActivity extends Activity {
         // Paypal description
         TextView txtPayPalDesc = findViewById(R.id.txtPaypalDescription);
 
+        // Cash App title
+        TextView txtCashAppTitle = findViewById(R.id.txtCashAppTitle);
+        // Cash App description
+        TextView txtCashAppDesc = findViewById(R.id.txtCashAppDescription);
+
         // choose donation amount
 		mGoogleSpinner = findViewById(R.id.spnDonate);
         ArrayAdapter<CharSequence> adapter;
@@ -103,13 +116,24 @@ public class DonateActivity extends Activity {
         Button btnPayPal = findViewById(R.id.btnDonatePaypal);
 
         // set PayPal invisible for Google Play
-        txtPayPalTitle.setVisibility(View.INVISIBLE);
-        txtPayPalDesc.setVisibility(View.INVISIBLE);
-        btnPayPal.setVisibility(View.INVISIBLE);
+        txtPayPalTitle.setVisibility(View.VISIBLE);
+        txtPayPalDesc.setVisibility(View.VISIBLE);
+        btnPayPal.setVisibility(View.VISIBLE);
         
         btnPayPal.setOnClickListener(this::donatePayPalOnClick);
 
-	}
+        // donate cash app
+        Button btnCashApp = findViewById(R.id.btnDonateCashApp);
+
+        // set PayPal invisible for Google Play
+        txtCashAppTitle.setVisibility(View.VISIBLE);
+        txtCashAppDesc.setVisibility(View.VISIBLE);
+        btnCashApp.setVisibility(View.VISIBLE);
+
+        btnCashApp.setOnClickListener(this::donateCashAppOnClick);
+
+        initializeBillingClient();
+    }
 
     /**
      * Open dialog
@@ -126,6 +150,16 @@ public class DonateActivity extends Activity {
         dialog.show();
     }
 
+    private void initializeBillingClient() {
+        PurchasesUpdatedListener purchasesUpdatedListener = (billingResult, purchases) -> {
+            // To be implemented in a later section.
+        };
+
+        BillingClient billingClient = BillingClient.newBuilder(this)
+                .setListener(purchasesUpdatedListener)
+                // Configure other settings.
+                .build();
+    }
     /**
      * Donate button executes donations based on selection in spinner
      */
@@ -203,7 +237,15 @@ public class DonateActivity extends Activity {
 	    String strPaypal = "http://www.paypal.me/dburgnerjr";
    		Intent newActivity = new Intent(Intent.ACTION_VIEW,  Uri.parse(strPaypal));     
         startActivity(newActivity);
+    }
 
+    /**
+     * Donate Cash App button executes link to Cash App donation page
+     */
+    public void donateCashAppOnClick(View view) {
+        String strCashApp = "http://cash.app/$dburgnerjr";
+        Intent newActivity = new Intent(Intent.ACTION_VIEW,  Uri.parse(strCashApp));
+        startActivity(newActivity);
     }
 
     /**

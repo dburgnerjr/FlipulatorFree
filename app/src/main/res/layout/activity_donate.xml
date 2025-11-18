@@ -88,7 +88,35 @@
 	        android:background="#690"
             android:textColor="#ffffff"
 	        android:text="@string/txtDonatePaypal" />
-   	    
-	</LinearLayout>
+
+        <TextView
+            android:id="@+id/txtCashAppTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:text="@string/donations_cash_app"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/txtCashAppDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="@string/donations_cash_app_description"
+            android:textAppearance="@android:style/TextAppearance.Small" />
+
+        <Button
+            android:id="@+id/btnDonateCashApp"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:background="#690"
+            android:textColor="#ffffff"
+            android:text="@string/txtDonateCashApp" />
+
+    </LinearLayout>
 
 </RelativeLayout>
