@@ -14,10 +14,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.PendingPurchasesParams;
+import com.android.billingclient.api.ProductDetails;
+import com.android.billingclient.api.ProductDetailsResponseListener;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.PurchasesUpdatedListener;
+import com.android.billingclient.api.QueryProductDetailsParams;
+import com.android.billingclient.api.QueryProductDetailsResult;
+import com.android.billingclient.api.UnfetchedProduct;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //import com.danielburgnerjr.flipulatorfree.util.IabHelper;
@@ -38,6 +46,11 @@ public class DonateActivity extends Activity {
     protected String[] mGoogleCatalog = new String[]{};
     protected String[] mGoogleCatalogValues = new String[]{};
 
+    private BillingClient billingClient;
+
+    private ArrayList<String> productIds;
+
+
     protected boolean mPaypalEnabled = false;
     protected String mPaypalUser = "";
     protected String mPaypalCurrencyCode = "";
@@ -48,7 +61,7 @@ public class DonateActivity extends Activity {
     private static final String[] CATALOG_DEBUG = new String[]{"android.test.purchased",
         "android.test.canceled", "android.test.refunded", "android.test.item_unavailable"};
     private static final String[] GOOGLE_CATALOG = new String[]{"donation1",
-        "donation5", "donation10", "donation25", "donation50", "donation100"};
+            "donation5", "donation10", "donation25", "donation50", "donation100"};
     /**
      * Google
      */
@@ -133,6 +146,8 @@ public class DonateActivity extends Activity {
         btnCashApp.setOnClickListener(this::donateCashAppOnClick);
 
         initializeBillingClient();
+        connectToBillingSystem();
+        productIds = loadProductIds();
     }
 
     /**
@@ -151,15 +166,85 @@ public class DonateActivity extends Activity {
     }
 
     private void initializeBillingClient() {
+        Log.i(TAG, "Inside initializeBillingClient...");
+
         PurchasesUpdatedListener purchasesUpdatedListener = (billingResult, purchases) -> {
             // To be implemented in a later section.
         };
 
+        PendingPurchasesParams params = PendingPurchasesParams.newBuilder()
+                .enableOneTimeProducts().build();
+
         BillingClient billingClient = BillingClient.newBuilder(this)
                 .setListener(purchasesUpdatedListener)
-                // Configure other settings.
+                .enablePendingPurchases(params)
+                .enableAutoServiceReconnection() // Add this line to enable reconnection
                 .build();
     }
+
+    private void connectToBillingSystem() {
+        Log.i(TAG, "Inside connectToBillingSystem...");
+
+        billingClient.startConnection(new BillingClientStateListener() {
+            @Override
+            public void onBillingSetupFinished(BillingResult billingResult) {
+                if (billingResult.getResponseCode() ==  BillingClient.BillingResponseCode.OK) {
+                    // The BillingClient is ready. You can query purchases here.
+                    Log.i(TAG, "Connection Success.");
+                    queryProductDetails();
+                }
+            }
+            @Override
+            public void onBillingServiceDisconnected() {
+                // Try to restart the connection on the next request to
+                // Google Play by calling the startConnection() method.
+            }
+        });
+    }
+
+    private void queryProductDetails() {
+        List<QueryProductDetailsParams.Product> products = new ArrayList<>();
+        for (String id : productIds) {
+            products.add(QueryProductDetailsParams.Product.newBuilder()
+                    .setProductId(id)
+                    .setProductType(BillingClient.ProductType.INAPP)
+                    .build());
+        }
+
+        QueryProductDetailsParams queryProductDetailsParams =
+                QueryProductDetailsParams.newBuilder()
+                        .setProductList(products)
+                        .build();
+
+        billingClient.queryProductDetailsAsync(
+                queryProductDetailsParams,
+                (billingResult, queryProductDetailsResult) -> {
+                    if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                        for (ProductDetails productDetails : queryProductDetailsResult.getProductDetailsList()) {
+                            // Process success retrieved product details here.
+                            Log.i("queryProductDetails: ", productDetails + "");
+                        }
+
+                        for (UnfetchedProduct unfetchedProduct : queryProductDetailsResult.getUnfetchedProductList()) {
+                            // Handle any unfetched products as appropriate.
+                        }
+                    }
+                }
+        );
+    }
+
+    private ArrayList<String> loadProductIds() {
+        ArrayList<String> ids = new ArrayList<>();
+        ids.add("donation1");
+        ids.add("donation5");
+        ids.add("donation10");
+        ids.add("donation25");
+        ids.add("donation50");
+        ids.add("donation100");
+
+        return ids;
+    }
+
     /**
      * Donate button executes donations based on selection in spinner
      */
