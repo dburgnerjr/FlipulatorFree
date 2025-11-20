@@ -1,8 +1,6 @@
 package com.danielburgnerjr.flipulatorfree;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,51 +10,44 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingFlowParams;
 import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.ConsumeParams;
+import com.android.billingclient.api.ConsumeResponseListener;
 import com.android.billingclient.api.PendingPurchasesParams;
 import com.android.billingclient.api.ProductDetails;
-import com.android.billingclient.api.ProductDetailsResponseListener;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.QueryProductDetailsParams;
-import com.android.billingclient.api.QueryProductDetailsResult;
-import com.android.billingclient.api.UnfetchedProduct;
+import com.android.billingclient.api.QueryPurchasesParams;
 
 import java.util.ArrayList;
 import java.util.List;
-
-//import com.danielburgnerjr.flipulatorfree.util.IabHelper;
-//import com.danielburgnerjr.flipulatorfree.util.IabResult;
-//import com.danielburgnerjr.flipulatorfree.util.Purchase;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class DonateActivity extends Activity {
-
     private Spinner mGoogleSpinner;
-
-    // Google Play helper object
-    //private IabHelper mHelper;
 
     protected boolean mDebug = false;
 
-    protected boolean mGoogleEnabled = false;
     protected String mGooglePubkey = "";
     protected String[] mGoogleCatalog = new String[]{};
     protected String[] mGoogleCatalogValues = new String[]{};
 
-    private BillingClient billingClient;
+    BillingClient billingClient;
 
     private ArrayList<String> productIds;
 
+    List<QueryProductDetailsParams.Product> products;
 
-    protected boolean mPaypalEnabled = false;
-    protected String mPaypalUser = "";
-    protected String mPaypalCurrencyCode = "";
-    protected String mPaypalItemName = "";
-
-    private static final String TAG = "Donations Library";
+    QueryProductDetailsParams queryProductDetailsParams;
 
     private static final String[] CATALOG_DEBUG = new String[]{"android.test.purchased",
         "android.test.canceled", "android.test.refunded", "android.test.item_unavailable"};
@@ -100,31 +91,6 @@ public class DonateActivity extends Activity {
 		
         btnDonateNow.setOnClickListener(this::donateGoogleOnClick);
 
-        // Create the helper, passing it our context and the public key to verify signatures with
-        if (mDebug)
-            Log.d(TAG, "Creating IAB helper.");
-        //mHelper = new IabHelper(this, mGooglePubkey);
-
-        // enable debug logging (for a production application, you should set this to false).
-        //mHelper.enableDebugLogging(mDebug);
-
-        // Start setup. This is asynchronous and the specified listener
-        // will be called once setup completes.
-        if (mDebug)
-            Log.d(TAG, "Starting setup.");
-/*
-        mHelper.startSetup(result -> {
-            if (mDebug)
-                Log.d(TAG, "Setup finished.");
-
-            if (!result.isSuccess()) {
-                // Oh noes, there was a problem.
-                openDialog(android.R.drawable.ic_dialog_alert, R.string.donations__google_android_market_not_supported_title,
-                        getString(R.string.donations__google_android_market_not_supported));
-            }
-        });
-*/
-
         // donate paypal
         Button btnPayPal = findViewById(R.id.btnDonatePaypal);
 
@@ -150,32 +116,27 @@ public class DonateActivity extends Activity {
         productIds = loadProductIds();
     }
 
-    /**
-     * Open dialog
-     */
-    void openDialog(int icon, int title, String message) {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setIcon(icon);
-        dialog.setTitle(title);
-        dialog.setMessage(message);
-        dialog.setCancelable(true);
-        dialog.setNeutralButton(R.string.donations__button_close,
-                (dialog1, which) -> dialog1.dismiss()
-        );
-        dialog.show();
-    }
-
     private void initializeBillingClient() {
-        Log.i(TAG, "Inside initializeBillingClient...");
-
         PurchasesUpdatedListener purchasesUpdatedListener = (billingResult, purchases) -> {
-            // To be implemented in a later section.
+            if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK &&
+                    purchases != null) {
+                for (Purchase purchase : purchases) {
+                    // Process the purchase as described in the next section.
+                    verifyPurchase(purchase);
+                }
+            } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.USER_CANCELED) {
+                // Handle an error caused by a user canceling the purchase flow.
+                Toast.makeText(getApplicationContext(), "purchase canceled", Toast.LENGTH_LONG).show();
+            } else {
+                // Handle any other error codes.
+                Toast.makeText(getApplicationContext(), "purchase error other reasons", Toast.LENGTH_LONG).show();
+            }
         };
 
         PendingPurchasesParams params = PendingPurchasesParams.newBuilder()
                 .enableOneTimeProducts().build();
 
-        BillingClient billingClient = BillingClient.newBuilder(this)
+        billingClient = BillingClient.newBuilder(this)
                 .setListener(purchasesUpdatedListener)
                 .enablePendingPurchases(params)
                 .enableAutoServiceReconnection() // Add this line to enable reconnection
@@ -183,14 +144,11 @@ public class DonateActivity extends Activity {
     }
 
     private void connectToBillingSystem() {
-        Log.i(TAG, "Inside connectToBillingSystem...");
-
         billingClient.startConnection(new BillingClientStateListener() {
             @Override
-            public void onBillingSetupFinished(BillingResult billingResult) {
+            public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
                 if (billingResult.getResponseCode() ==  BillingClient.BillingResponseCode.OK) {
                     // The BillingClient is ready. You can query purchases here.
-                    Log.i(TAG, "Connection Success.");
                     queryProductDetails();
                 }
             }
@@ -203,7 +161,7 @@ public class DonateActivity extends Activity {
     }
 
     private void queryProductDetails() {
-        List<QueryProductDetailsParams.Product> products = new ArrayList<>();
+        products = new ArrayList<>();
         for (String id : productIds) {
             products.add(QueryProductDetailsParams.Product.newBuilder()
                     .setProductId(id)
@@ -211,8 +169,7 @@ public class DonateActivity extends Activity {
                     .build());
         }
 
-        QueryProductDetailsParams queryProductDetailsParams =
-                QueryProductDetailsParams.newBuilder()
+        queryProductDetailsParams = QueryProductDetailsParams.newBuilder()
                         .setProductList(products)
                         .build();
 
@@ -223,10 +180,6 @@ public class DonateActivity extends Activity {
                         for (ProductDetails productDetails : queryProductDetailsResult.getProductDetailsList()) {
                             // Process success retrieved product details here.
                             Log.i("queryProductDetails: ", productDetails + "");
-                        }
-
-                        for (UnfetchedProduct unfetchedProduct : queryProductDetailsResult.getUnfetchedProductList()) {
-                            // Handle any unfetched products as appropriate.
                         }
                     }
                 }
@@ -251,69 +204,82 @@ public class DonateActivity extends Activity {
     public void donateGoogleOnClick(View view) {
         final int index;
         index = mGoogleSpinner.getSelectedItemPosition();
-        if (mDebug)
-            Log.d(TAG, "selected item in spinner: " + index);
+        AtomicReference<ProductDetails> selectedProduct = new AtomicReference<>();
 
-/*
-        if (mDebug) {
-            // when debugging, choose android.test.x item
-        	//Toast.makeText(getApplicationContext(), CATALOG_DEBUG[index], Toast.LENGTH_LONG).show();
-            mHelper.launchPurchaseFlow(this,
-            		CATALOG_DEBUG[index], IabHelper.ITEM_TYPE_INAPP,
-                    0, mPurchaseFinishedListener, null);
-        } else {
-        	//Toast.makeText(getApplicationContext(), mGoogleCatalog[index], Toast.LENGTH_LONG).show();
-            mHelper.launchPurchaseFlow(this,
-            		mGoogleCatalog[index], IabHelper.ITEM_TYPE_INAPP,
-                    0, mPurchaseFinishedListener, null);
-        }
-*/
+        billingClient.queryProductDetailsAsync(
+                queryProductDetailsParams,
+                (billingResult, queryProductDetailsResult) -> {
+                    if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                        for (ProductDetails productDetails : queryProductDetailsResult.getProductDetailsList()) {
+                            // Process success retrieved product details here.
+                            if (productDetails.getProductId().equals(mGoogleCatalog[index])) {
+                                selectedProduct.set(productDetails);
+                                break;
+                            }
+                        }
+                    }
+                    ProductDetails selProd = selectedProduct.get();
+                    startPurchaseFlow(selProd);
+                }
+        );
     }
 
-    // Callback for when a purchase is finished
-/*
-    IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
-        public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
-            if (mDebug)
-                Log.d(TAG, "Purchase finished: " + result + ", purchase: " + purchase);
+    private void startPurchaseFlow(ProductDetails productDetails) {
+        List<BillingFlowParams.ProductDetailsParams> productDetailsParamsList =
+                List.of(
+                        BillingFlowParams.ProductDetailsParams.newBuilder()
+                                // retrieve a value for "productDetails" by calling queryProductDetailsAsync()
+                                .setProductDetails(productDetails)
+                                // Get the offer token:
+                                // a. For one-time products, call ProductDetails.getOneTimePurchaseOfferDetailsList()
+                                // for a list of offers that are available to the user.
+                                // b. For subscriptions, call ProductDetails.subscriptionOfferDetails()
+                                // for a list of offers that are available to the user.
+                                .setOfferToken(Objects.requireNonNull(Objects.requireNonNull(productDetails.getOneTimePurchaseOfferDetails()).getOfferToken()))
+                                .build()
+                );
 
-            // if we were disposed of in the meantime, quit.
-            if (mHelper == null) return;
+        BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder()
+                .setProductDetailsParamsList(productDetailsParamsList)
+                .build();
 
-            if (result.isSuccess()) {
-                if (mDebug)
-                    Log.d(TAG, "Purchase successful.");
+        // Launch the billing flow
+        billingClient.launchBillingFlow(this, billingFlowParams);
+    }
 
-                // directly consume in-app purchase, so that people can donate multiple times
-                mHelper.consumeAsync(purchase, mConsumeFinishedListener);
+    private void verifyPurchase(Purchase purchase) {
+        ConsumeParams consumeParams =
+                ConsumeParams.newBuilder()
+                        .setPurchaseToken(purchase.getPurchaseToken())
+                        .build();
 
-                // show thanks openDialog
-                openDialog(android.R.drawable.ic_dialog_info, R.string.donations__thanks_dialog_title,
-                        getString(R.string.donations__thanks_dialog));
+        ConsumeResponseListener listener = (billingResult, purchaseToken) -> {
+            if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                // Handle the success of the consume operation.
+                Toast.makeText(getApplicationContext(), "Purchase successful", Toast.LENGTH_LONG).show();
             }
-        }
-    };
-*/
+        };
 
-    // Called when consumption is complete
-/*
-    IabHelper.OnConsumeFinishedListener mConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
-        public void onConsumeFinished(Purchase purchase, IabResult result) {
-            if (mDebug)
-                Log.d(TAG, "Consumption finished. Purchase: " + purchase + ", result: " + result);
+        billingClient.consumeAsync(consumeParams, listener);
+    }
 
-            // if we were disposed of in the meantime, quit.
-            if (mHelper == null) return;
-
-            if (result.isSuccess()) {
-                if (mDebug)
-                    Log.d(TAG, "Consumption successful. Provisioning.");
-            }
-            if (mDebug)
-                Log.d(TAG, "End consumption flow.");
-        }
-    };
-*/
+    protected void onResume() {
+        super.onResume();
+        billingClient.queryPurchasesAsync(QueryPurchasesParams.newBuilder().
+                setProductType(BillingClient.ProductType.INAPP).build(), (billingResult, list) -> {
+                        if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                            for (Purchase purchase : list) {
+                                if (purchase.getPurchaseState() == Purchase.PurchaseState.PENDING) {
+                                    // show toast message to user
+                                    Toast.makeText(getApplicationContext(), "You have purchases pending", Toast.LENGTH_LONG).show();
+                                } else if (purchase.getPurchaseState() == Purchase.PurchaseState.PURCHASED
+                                        && !purchase.isAcknowledged()) {
+                                    verifyPurchase(purchase);
+                                }
+                            }
+                        }
+                });
+    }
 
     /**
      * Donate Paypal button executes link to Paypal donation page
@@ -332,28 +298,4 @@ public class DonateActivity extends Activity {
         Intent newActivity = new Intent(Intent.ACTION_VIEW,  Uri.parse(strCashApp));
         startActivity(newActivity);
     }
-
-    /**
-     * Needed for Google Play In-app Billing. It uses startIntentSenderForResult(). The result is not propagated to
-     * the Fragment like in startActivityForResult(). Thus we need to propagate manually to our Fragment.
-     */
-    //@Override
-/*
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (mDebug)
-            Log.d(TAG, "onActivityResult(" + requestCode + "," + resultCode + "," + data);
-        if (mHelper == null) return;
-
-        // Pass on the fragment result to the helper for handling
-        if (!mHelper.handleActivityResult(requestCode, resultCode, data)) {
-            // not handled, so handle it ourselves (here's where you'd
-            // perform any handling of activity results not related to in-app
-            // billing...
-            super.onActivityResult(requestCode, resultCode, data);
-        } else {
-            if (mDebug)
-                Log.d(TAG, "onActivityResult handled by IABUtil.");
-        }
-    }
-*/
 }
