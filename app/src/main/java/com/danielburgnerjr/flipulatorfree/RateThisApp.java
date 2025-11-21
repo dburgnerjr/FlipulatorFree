@@ -9,13 +9,15 @@ import android.graphics.Color;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class RateThisApp {
 	private final static String APP_TITLE = "Flipulator Free";
 	private final static String APP_PNAME = "com.danielburgnerjr.flipulatorfree";
 
-	private final static int DAYS_UNTIL_PROMPT = 3;
+    private final static String appRatingMessage = "If you enjoy using " + APP_TITLE + ", please take a moment to rate it. Thanks for your support!";
+
+    private final static String rateButtonText = "Rate " + APP_TITLE;
+    private final static int DAYS_UNTIL_PROMPT = 3;
 	private final static int LAUNCHES_UNTIL_PROMPT = 7;
 
 	public static void onLaunch(Context mContext) {
@@ -55,13 +57,13 @@ public class RateThisApp {
 	
 	    TextView tv = new TextView(mContext);
 	    tv.setTextColor(Color.parseColor("#000000"));
-	    tv.setText("If you enjoy using " + APP_TITLE + ", please take a moment to rate it. Thanks for your support!");
+	    tv.setText(appRatingMessage);
 	    tv.setWidth(240);
 	    tv.setPadding(4, 0, 4, 10);
 	    ll.addView(tv);
 	
 	    Button b1 = new Button(mContext);
-	    b1.setText("Rate " + APP_TITLE);
+	    b1.setText(rateButtonText);
 	    b1.setOnClickListener(v -> {
             mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + APP_PNAME)));
             if (editor != null) {

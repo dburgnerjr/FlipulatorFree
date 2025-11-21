@@ -23,19 +23,14 @@ import com.google.android.gms.ads.AdView;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.view.KeyEvent;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class ResultsActivity extends Activity {
-	
-	final Context cntC = this;
-	
 	private Calculate calC;
 	private Results resR;
 
@@ -99,7 +94,7 @@ public class ResultsActivity extends Activity {
 
         assert calC != null;
         etStreetAddress.setText(calC.getAddress());
-		etCityStZipCode.setText(calC.getCityStZip());
+        etCityStZipCode.setText(calC.getCityStZip());
 		etSF.setText(String.format(Locale.US, "%d", calC.getSquareFootage()));
 		etFMVARV.setText(String.format(Locale.US, "$%.0f", calC.getFMVARV()));
 		etSalesPrice.setText(String.format(Locale.US,"$%.0f", calC.getSalesPrice()));
@@ -113,7 +108,7 @@ public class ResultsActivity extends Activity {
 		if (resR.getProfit() < 30000.0) {
             // do something when the button is clicked
             // do something when the button is clicked
-            AlertDialog adAlertBox = new AlertDialog.Builder(this)
+            new AlertDialog.Builder(this)
 		    .setMessage("Your profit is below $30K! Would you like to make changes now?")
 		    .setPositiveButton("Yes", (arg0, arg1) -> {
                 Intent intB = new Intent(ResultsActivity.this, CalculateActivity.class);
@@ -157,7 +152,7 @@ public class ResultsActivity extends Activity {
 	    WritableWorkbook workbook = Workbook.createWorkbook(fileXls, wbSettings);
 	    workbook.createSheet(calC.getAddress() + " " + calC.getCityStZip(), 0);
 	    WritableSheet excelSheet = workbook.getSheet(0);
-	    StringBuilder buf = new StringBuilder();
+	    StringBuilder buf;
 
 	    // Lets create a times font
 	    WritableFont times18ptHeader = new WritableFont(WritableFont.ARIAL, 18, WritableFont.BOLD);
@@ -283,7 +278,7 @@ public class ResultsActivity extends Activity {
 
 	    buf = new StringBuilder();
 	    buf.append("(D16/(D12+D14))");
-	    Formula forCashCashReturnSixMonthO = new Formula(3, 19, buf.toString(), wcfPercent);
+	    Formula forCashCashReturnSixMonthO = new Formula(3, 19, buf.toString(), wcfPercentTwoPlaces);
 	    excelSheet.addCell(forCashCashReturnSixMonthO);
 
 	    // budget items
@@ -323,8 +318,8 @@ public class ResultsActivity extends Activity {
 	public void nextPage(View view) {
         // do something when the button is clicked
         // do something when the button is clicked
-        AlertDialog adAlertBox = new AlertDialog.Builder(this)
-	    .setMessage("Do you want to email results as text or as an Excel spreadsheet?")
+        new AlertDialog.Builder(this)
+                .setMessage("Do you want to email results as text or as an Excel spreadsheet?")
 	    .setPositiveButton("Text", (arg0, arg1) -> {
             emailPlainText();
             //close();
@@ -341,7 +336,6 @@ public class ResultsActivity extends Activity {
 
 	public void emailExcelSpreadsheet() throws IOException, WriteException {
 		File myDir = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorFree");
-	    myDir.mkdirs();
 	    String strFileNameXls = calC.getAddress() + " " + calC.getCityStZip() + ".xls";
 		File file = new File(myDir, strFileNameXls);
 		
@@ -383,24 +377,12 @@ public class ResultsActivity extends Activity {
 	public void saveFile(View view) throws IOException, WriteException {
 		// saves results to text file
 		File myDir = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorFree");
-	    myDir.mkdirs();
 	    String strFileNameXls = calC.getAddress() + " " + calC.getCityStZip() + ".xls";
-		File file = new File(myDir, strFileNameXls);
-		
+
 		// create Excel spreadsheet
 		createSpreadsheet(myDir, strFileNameXls);
 		
 		String strSavedFile = "File saved as: " + strFileNameXls;
 		Toast.makeText(getApplicationContext(), strSavedFile, Toast.LENGTH_SHORT).show();
 	}
-	
-	public boolean onKeyDown(int nKeyCode, KeyEvent keEvent) {
-		String strBackMessage = "Press Save to save info to file, Edit to make changes, Main Menu to return to main menu ";
-		strBackMessage += " or Email Results to email.";
-		if (nKeyCode == KeyEvent.KEYCODE_BACK) {
-			Toast.makeText(getApplicationContext(), strBackMessage, Toast.LENGTH_SHORT).show();
-		    return true;
-		}
-		return super.onKeyDown(nKeyCode, keEvent);
-    }
 }

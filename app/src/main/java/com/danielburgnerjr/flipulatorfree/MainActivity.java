@@ -3,12 +3,10 @@ package com.danielburgnerjr.flipulatorfree;
 import java.io.File;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -97,35 +95,13 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-	
-	 public boolean onKeyDown(int nKeyCode, KeyEvent keEvent) {
-		if (nKeyCode == KeyEvent.KEYCODE_BACK) {
-			exitByBackKey();
-		    return true;
-		}
-		return super.onKeyDown(nKeyCode, keEvent);
-     }
-
-	 protected void exitByBackKey() {
-         // do something when the button is clicked
-         // do something when the button is clicked
-         AlertDialog adAlertBox = new AlertDialog.Builder(this)
-		    .setMessage("Do you want to exit application?")
-		    .setPositiveButton("Yes", (arg0, arg1) -> {
-                finish();
-                //close();
-            })
-		    .setNegativeButton("No", (arg0, arg1) -> {
-            })
-		    .show();
-	 }
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
