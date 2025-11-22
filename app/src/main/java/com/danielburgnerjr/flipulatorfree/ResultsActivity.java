@@ -101,32 +101,38 @@ public class ResultsActivity extends Activity {
 		etRehabBudget.setText(String.format(Locale.US,"$%.0f", calC.getBudget()));
 		etBudgetItems.setText(calC.getBudgetItems());
 		
-		resR = new Results();
-		resR.setClosHoldCosts(calC.getFMVARV());
-		resR.setProfit(calC.getSalesPrice(), calC.getFMVARV(), calC.getBudget());
-		resR.setROI(calC.getFMVARV());
-		if (resR.getProfit() < 30000.0) {
-            // do something when the button is clicked
-            // do something when the button is clicked
-            new AlertDialog.Builder(this)
-		    .setMessage("Your profit is below $30K! Would you like to make changes now?")
-		    .setPositiveButton("Yes", (arg0, arg1) -> {
-                Intent intB = new Intent(ResultsActivity.this, CalculateActivity.class);
-                intB.putExtra("Calculate", calC);
-                startActivity(intB);
-                finish();
-            })
-		    .setNegativeButton("No", (arg0, arg1) -> {
-            })
-		    .show();
-		}
-		resR.setCashOnCash(calC.getBudget());
-		
+		resR = calclulateResults(calC);
+
 		etClosHoldCosts.setText(String.format(Locale.US, "$%.0f", resR.getClosHoldCosts()));
 		etProfit.setText(String.format(Locale.US,"$%.0f", resR.getProfit()));
 		etROI.setText(String.format(Locale.US,"%.1f%%", resR.getROI()));
 		etCashOnCash.setText(String.format(Locale.US,"%.1f%%", resR.getCashOnCash()));
 	}
+
+    public Results calclulateResults(Calculate calC) {
+        Results resR = new Results();
+        resR.setClosHoldCosts(calC.getFMVARV());
+        resR.setProfit(calC.getSalesPrice(), calC.getFMVARV(), calC.getBudget());
+        resR.setROI(calC.getFMVARV());
+        if (resR.getProfit() < 30000.0) {
+            // do something when the button is clicked
+            // do something when the button is clicked
+            new AlertDialog.Builder(this)
+                    .setMessage("Your profit is below $30K! Would you like to make changes now?")
+                    .setPositiveButton("Yes", (arg0, arg1) -> {
+                        Intent intB = new Intent(ResultsActivity.this, CalculateActivity.class);
+                        intB.putExtra("Calculate", calC);
+                        startActivity(intB);
+                        finish();
+                    })
+                    .setNegativeButton("No", (arg0, arg1) -> {
+                    })
+                    .show();
+        }
+        resR.setCashOnCash(calC.getBudget());
+
+        return resR;
+    }
 
 	// returns to main menu
 	public void mainMenu(View view) {
@@ -183,16 +189,16 @@ public class ResultsActivity extends Activity {
 	    NumberFormat nbfPercentTwoPlaces = new NumberFormat("#0.00%");
 	    WritableCellFormat wcfPercentTwoPlaces = new WritableCellFormat(nbfPercentTwoPlaces);
 
-	    // Write a few headers
-	    WritableCell wrcResults = new Label(0, 0, "Results", times);
-	    excelSheet.addCell(wrcResults);
-	    excelSheet.mergeCells(0, 0, 4, 0);
-	    
-	    // set up column and row view
-	    excelSheet.setColumnView(0, 25);
-	    excelSheet.setRowView(0, (int)((1.5d * 14)*20), false);
+        //initializeSpreadsheet(excelSheet, times);
+        WritableCell wrcResults = new Label(0, 0, "Results", times);
+        excelSheet.addCell(wrcResults);
+        excelSheet.mergeCells(0, 0, 4, 0);
 
-	    // location info - original
+        // set up column and row view
+        excelSheet.setColumnView(0, 25);
+        excelSheet.setRowView(0, (int)((1.5d * 14)*20), false);
+
+        // location info - original
 	    Label lblPropAddressOrig;
 	    lblPropAddressOrig = new Label(0, 1, "Property Address:", timesBold);
 	    excelSheet.addCell(lblPropAddressOrig);
@@ -315,6 +321,17 @@ public class ResultsActivity extends Activity {
 	    workbook.close();		
 	}
 
+    private void initializeSpreadsheet(WritableSheet sheet, WritableCellFormat font) throws WriteException {
+        // Write a few headers
+        WritableCell wrcResults = new Label(0, 0, "Results", font);
+        sheet.addCell(wrcResults);
+        sheet.mergeCells(0, 0, 4, 0);
+
+        // set up column and row view
+        sheet.setColumnView(0, 25);
+        sheet.setRowView(0, (int)((1.5d * 14)*20), false);
+    }
+
 	public void nextPage(View view) {
         // do something when the button is clicked
         // do something when the button is clicked
@@ -338,7 +355,7 @@ public class ResultsActivity extends Activity {
 		File myDir = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorFree");
 	    String strFileNameXls = calC.getAddress() + " " + calC.getCityStZip() + ".xls";
 		File file = new File(myDir, strFileNameXls);
-		
+
 		if (!file.exists()) {
 			createSpreadsheet(myDir, strFileNameXls);
 		}
